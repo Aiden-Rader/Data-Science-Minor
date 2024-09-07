@@ -4,14 +4,10 @@ Welcome to my coding coursework portfolio! This repository contains a collection
 
 ## Table of Contents
 
-- [Programming Coursework Portfolio](#programming-coursework-portfolio)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Languages, Technologies, and Tools](#languages-technologies-and-tools)
-    - [Current Languages Taught at UT](#current-languages-taught-at-ut)
-    - [Tools/Software Used](#toolssoftware-used)
-  - [Project Structure](#project-structure)
-  - [Contact](#contact)
+- [Overview](#overview)
+- [Languages, Technologies, and Tools](#languages-technologies-and-tools)
+- [Project Structure](#project-structure)
+- [Contact](#contact)
 
 ## Overview
 
