@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*.ipynb_checkpoints
+*.egg-info/
+*.eggs/
+*.env
+.env
+
+# SAS
+*.sas7bdat
+*.sas7bndx
+*.sasbdat
+*.log
+*.lst
+*.saslock
+
+# SPSS
+*.sav
+*.spv
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+.Rprofile
+
+# R Libraries
+.Rcheck/
+renv/library/
+renv/cache/
+
+# Visual Studio Code
+.vscode/
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+
+# Data files
+*.csv
+*.tsv
+*.xls
+*.xlsx
+*.json
+*.parquet
+
+# Config and environment files
+*.env
+.env.*
+
+# Backup files
+*.bak
+*.swp
+*.swo
