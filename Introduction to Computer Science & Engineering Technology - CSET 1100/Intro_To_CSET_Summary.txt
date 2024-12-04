@@ -1,0 +1,1135 @@
+SUMMARY OF COMPUTER/PYTHON CONCEPTS AND DEFINITIONS (AKA PYTHON WIKI)
+
+TABLE OF CONTENTS
+1. COMPUTER COMPONENTS
+2. COMPUTER UNITS
+3. COMPUTER LANGUAGES
+4. VISUAL STUDIO CONCEPTS
+5. VARIABLES
+6. INPUT/OUTPUT STATEMENTS
+7. EXPRESSIONS
+8. CONTROL STRUCTURES
+9. LISTS/SETS/TUPLE/DICTIONARY
+10. FUNCTIONS
+11. IMPORT BASICS
+12. TURTLE GRAPHICS BASICS
+13. OBJECT-ORIENTED BASICS
+14. FILE HANDLING
+15. UNIX/DOS COMMANDS
+16. BIG O NOTATION
+17. SORTING ALGORITHMS
+18. EXTRA BITS
+
+ONLINE DEBUGGER PYTHON - https://www.onlinegdb.com/online_python_debugger
+ONLINE UNIX CMD PROMPT - https://bellard.org/jslinux/vm.html?url=alpine-x86.cfg
+
+** DO NOT PUT SPACES WHILE DOING THIS EXAM **
+** EXAMPLE: GOOD S1=Sauce() || BAD S1 = Sauce() **
+
+====================================
+1. COMPUTER COMPONENTS
+====================================
+
+- MEMORY: Temporarily stores data for processing.
+    Example: RAM, ROM
+- INPUT/OUTPUT (I/O): Interfaces for communication.
+    Example: Keyboard, Mouse, Monitor, Printer
+- CPU (CENTRAL PROCESSING UNIT): Executes instructions.
+    Example: Intel Core i7, AMD Ryzen 7
+- LONG TERM STORAGE: Non-volatile storage.
+    Example: HDD, SSD, USB Flash Drive
+
+====================================
+2. COMPUTER UNITS
+====================================
+
+- BIT: Smallest unit of data (0 or 1).
+- NIBBLE: Group of 4 bits.
+- BYTE: Group of 8 bits.
+- KILOBYTE (KB): ~1,000 bytes (1,024 bytes in binary)
+- KIBIBYTE (KiB): Exactly 1,024 bytes.
+- MEBIBYTE (MiB): The binary counterpart of MB, exactly 1,048,576 bytes.
+- GIBIBYTE (GiB): Binary counterpart of GB, exactly 1,073,741,824 bytes.
+
+====================================
+3. COMPUTER LANGUAGES
+====================================
+
+- INTERPRETED LANGUAGES: Translates code line-by-line during runtime. Slower but easier to debug!
+    Example: Python, JavaScript
+- COMPILED LANGUAGES: Translated to machine code before execution.
+    Example: C, C++
+- MACHINE LANGUAGE: Binary instructions.
+    Example: 10111000 00000001
+- ASSEMBLY CODE: Low-Level that human can still somewhat read
+	Example: MIPS Archetecture (Remember Comp Arch!!)
+- HIGH-LEVEL LANGUAGES: Closer to human language.
+    Example: x = 5 in Python
+
+====================================
+4. VISUAL STUDIO CONCEPTS
+====================================
+
+- DEBUGGING: Identifying and fixing errors.
+- BREAKPOINT: A marker where code pauses.
+- STEP
+	*INTO: Step into a function or where a function is being called.
+	*OVER: Step over a variable assignment or a fucntion so we dont go into said function.
+	*OUT: Step out of a function or variable so we can proceed with what we where doing before.
+- WATCH WINDOW: Tracks variables in real-time.
+
+====================================
+5. VARIABLES
+====================================
+
+- ASSIGNMENT: Set a value to a variable.
+    Example: x = 10
+- DATA TYPES: int, str, float, bool.
+    Example: int x = 5
+- TYPE CONVERSION: Convert one type to another. int(value that is a string)
+	- Classify class type: print(type(s))
+    Conversion Example(s):
+		int("5"), also if you need base 2 = int(s,2)
+		str(5) # Used to convert an integer into a string.
+			- string -> list
+			my_string = "hello"
+			string_as_list = list(my_string) # Output: ['h', 'e', 'l', 'l', 'o']
+			- string -> tuple
+			my_string = "hello"
+			string_as_tuple = tuple(my_string) # Output: ('h', 'e', 'l', 'l', 'o')
+		float(5)
+		ord(s) # This function is used to convert a character to an integer.
+		hex(s) # This function is to convert an integer to a hexadecimal string.
+		oct(s) # This function is to convert an integer to an octal string.
+		tuple(s) # This function is used to convert to a tuple.
+		set(s) # This function returns the type after converting to set.
+		list(s) # This function returns the type after converting to set.
+		dict(tuple) # This function is used to convert a tuple of order (key, value) into a dictionary.
+			- keys -> list
+			keys_as_list = list(my_dict.keys())
+			- values -> tuple
+			values_as_tuple = tuple(my_dict.values())
+		complex(real,imaginary) # This function converts real numbers to complex(real,imag) number.
+		char(number) # This function converts a number to its corresponding ASCII character.
+- MAIN STRING METHODS:
+	- upper(): Convert to upper case
+	- lower(): Convert to lower case
+	- find(substring): Find the first occurrence of a substring.
+	- replace(old, new): Replace occurrences of a substring with another. If nothing found, returns -1
+	- capitalize(): Converts the first character of the string to upper case, and the rest to lower case
+	- title(): Converts the first character of each word to upper case
+	- strip(): Removes leading and trailing whitespace or specified characters
+	- startswith(prefix): Returns True if the string starts with the specified prefix
+	- endswith(suffix): Returns True if string ends with the specified suffix
+	- split(separator): Splits the string into a list of substrings at the specified separator
+	- join(iterable): Joins elements of an iterable into a single string, using the string as a separator
+	- count(substring): Counts the number of times a substring occurs in the string
+	- isalpha(): Returns True if all characters in the string are alphabetic
+	- isalnum(): Returns True if all characters are alphanumeric (letters or digits)
+	- isdigit(): Returns True if all characters are digits
+	- swapcase(): Swaps the case of each character in the string
+	- ljust(width): Returns a left-justified version of the string, padded with spaces or a specified character
+	- rjust(width): Returns a right-justified version of the string, padded with spaces or a specified character
+	- zfill(width): Pads the string on the left with zeros until it reaches the specified width
+	- partition(separator): Splits the string into three parts: the part before the separator, the separator itself, and the part after
+
+- INT METHODS:
+	- round(): rounds to the nearest whole number / can also do round(x, 2) to give amount of decimal places you want!
+- MATHEMATICAL OPERATORS: Arithmetic symbols
+	- ADDITION: '+'
+    Example: 5 + 3 = 8
+		> If you would like to add to an existing variable: result += 5
+	- SUBTRACTION: '-'
+	Example: 10- 4 = 6
+		> If you would like to subtract from an existing variable: result -= 5
+	- MULTIPLICATION: '*'
+	Example: 5 * 5 = 25
+		> If you would like to multiply from an existing variable: result *= 5
+	- DIVISION: '/'
+	Example: 15 / 4 = 3.75
+		> If you would like to divide from an existing variable: result /= 5
+
+	- FLOOR DIVISION: '//' (round down instead)
+	Example: 15 // 4 = 3
+	- MODULUS: '%' (return remainder)
+	Example: 15 % 4 = 3
+	- EXPONENT: '**' (Without using numpy exp())
+	Example: 2 ** 3 = 8
+- URNARY OPERATORS: This will chnage the existing variable to a pos or neg (NOT ADDING OR SUBTRACTION)
+	- POSITIVE: result = +5
+	- NEGATIVE: result = -5
+- SWAP: Exchange variable values.
+    Example: a, b = b, a
+- LOCAL VARIABLES: are defined inside a function and are not accessible outside it.
+	Example:
+	def my_function():
+		x = 10  # Local variable
+- GLOBAL VARIABLES: are defined outside any function and can be accessed anywhere in the code.
+	Example:
+	y = 20  # Global variable
+	def another_function():
+		print(y)  # Can access global variables
+- GLOBAL KEYWORD: When you declare a variable as global within a function, you can modify its value
+	Example:
+	# Global variable
+	x = 10
+
+	def modify_global():
+		global x  # Declare x as global to modify it
+		x += 5    # Modify the global variable
+
+modify_global()
+print(x)  # Output: 15
+
+====================================
+6. INPUT/OUTPUT STATEMENTS
+====================================
+
+- INPUT STATEMENT: Get user input.
+	Syntax: input(prompt)
+    Example: input("Enter a number: ")
+- PRINT STATEMENT: Display output.
+	Sytanx: print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False)
+    Example: print("Hello", end=", ") # Notice the end in the print, this prints "Hello" without moving to the next line!
+
+====================================
+7. EXPRESSIONS
+====================================
+
+- COMPARISON OPERATORS: Compare values and check relationships between them. They return True or False.
+
+Equality: == checks if two values are equal.
+	Example: x == 5 (returns True if x is 5)
+
+Inequality: != checks if two values are not equal.
+	Example: x != 5 (returns True if x is not 5)
+
+Greater Than: > checks if the left value is greater than the right.
+	Example: x > 5 (returns True if x is greater than 5)
+
+Less Than: < checks if the left value is less than the right.
+	Example: x < 5 (returns True if x is less than 5)
+
+Greater Than or Equal To: >= checks if the left value is greater than or equal to the right.
+	Example: x >= 5 (returns True if x is greater than or equal to 5)
+
+Less Than or Equal To: <= checks if the left value is less than or equal to the right.
+	Example: x <= 5 (returns True if x is less than or equal to 5)
+
+- LOGICAL OPERATORS: Perform logical operations, allowing you to combine multiple conditions.
+
+AND: Returns True if both conditions are true.
+	Example: (x > 5) and (x < 10) (returns True if x is greater than 5 and less than 10)
+OR: Returns True if at least one of the conditions is true.
+	Example: (x < 5) or (x > 10) (returns True if x is less than 5 or greater than 10)
+NOT: Inverts the truth value of a condition.
+	Example: not (x == 5) (returns True if x is not equal to 5)
+
+- BITWISE OPERATORS: Perform operations on binary representations of integers.
+AND: '&'
+	Example: print(5 & 3)  # Output: 1 (0101 & 0011 = 0001)
+OR: '|'
+	Example: print(5 | 3)  # Output: 7 (0101 | 0011 = 0111)
+XOR: '^'
+	Example: print(5 ^ 3)  # Output: 6 (0101 ^ 0011 = 0110)
+NOT: '~'
+	Example: print(~5)  # Output: -6 (Inverts 0101 to 1010 in two's complement)
+SHIFTS: '<<' (Left) || '>>' (Left)
+	Examples: print(5 << 1)  # Output: 10 (0101 becomes 1010) || print(5 >> 1)  # Output: 2 (0101 becomes 0010)
+
+- MATH LIBRARY (import math): Provides additional mathematical operations.
+	Examples:
+		print(math.sqrt(16))  # Output: 4.0
+		print(math.pi)        # Output: 3.141592653589793
+		print(math.sin(math.radians(90)))  # Output: 1.0
+
+=================================
+8. CONTROL STRUCTURES
+=================================
+
+- IF/ELIF/ELSE: Conditional structure.
+    Example:
+    if x > 10:
+        print("x is greater")
+    elif x == 10:
+        print("x is 10")
+    else:
+        print("x is less")
+- FOR LOOP USING RANGE: Repeats a number of times.
+    Example: for i in range(5):
+                 print(i)
+- FOR EACH LOOP: Iterates over a sequence.
+    Example:
+		for char in "Hello":
+			print(char)
+	Example of looping a list:
+		for i in my_list:
+			print(i)
+- WHILE LOOP: Repeats while a condition is true.
+	Syntax: while (condition):
+    Example:
+    count = 0
+    while count < 5:
+        print(count)
+        count += 1
+- EXTRA CONTROL STRUCTURES:
+	- Continue: Skip to the next iteration of a loop
+		Example of Continue:
+		count = 0
+		while count < 5:
+			count += 1
+			if count == 3:
+				continue  # Skip the print statement when count is 3
+			print(count)  # Output: 1, 2, 4, 5
+
+	- Break: Exit a loop prematurely
+		Example of Break:
+		count = 0
+		while True:
+			print(count)
+			if count >= 5:
+				break  # Exit the loop when count is 5
+			count += 1
+
+====================================
+9. LISTS/SETS/TUPLE/DICTIONARY
+====================================
+
+Key Points:
+Mutability: Lists are mutable, while tuples and strings are immutable.
+Duplicates: Sets automatically remove duplicates.
+Dictionaries: Only keys or values can be converted to lists or tuples, and vice versa.
+
+LISTS []:
+- POSITIVE AND NEGATIVE INDEXING: Access elements.
+    Example:
+		lst = [10, 20, 30, 40]
+		print(lst[0])    # Output: 10 (positive indexing)
+		print(lst[-1])   # Output: 40 (negative indexing)
+- APPENDING: Add elements to the end.
+    Example: lst.append(50)
+- INSERT: Insert at a specific postion in the list.
+	Example: lst.insert(index, value/number)
+- REMOVE: Remove the first occurance of a value.
+	Example: lst.remove(value/number)
+- POP: Removes and returns the last item or item at a specific index.
+	Example: lst.pop()
+- SORT: Sorts the list and returns a sorted list. (DO NOT EQUAL TO ANYTHING)
+	Example: lst.sort() (#list.sort(reverse=True|False, key=myFunc))
+- MIN/MAX FUNCTIONS: find the min or max number in a given list
+	Example: min(lst) || max(lst)
+- ACCESSING ELEMENTS IN A LISTS: Hard coded way to return an element in a list by declaring the int/string of the element or even the index
+	Example: lst[element]
+- SLICING: Extract sublists/recieve portions of a list.
+    Example: my_list = [1, 2, 3, 4, 5]
+			 sub_list = my_list[1:4]# [2, 3, 4]
+			 sub_list = my_list[1:]# [2, 3, 4, 5]
+			 sub_list = my_list[::2] # Acts as a step function skipping every second list object
+- LIST COMPREHENSION: Create lists using loops inside the list itself
+    Example(s):
+	[x**2 for x in range(5)]
+	OR create a new list using list comprehension:
+ 	new_list = [expression for item in my_list if condition]
+- RANDOM LIST: Creates a random assortment of any type of variable for a specific range (optional, also need import random)
+	Example: rand_list = [random.randint(1,100) for _ in range(10)] # list comprehension for getting 10 RANDOM numbers
+
+OTHER DATA STRUCTURES:
+- SET {}: A collection type that is unordered, unindexed, and does not allow duplicate elements. Sets are useful for membership testing and eliminating duplicate entries.
+	Example: my_set = {7, 8, 9}
+- TUPLE (): A collection type that is ordered and immutable (cannot be changed after creation).  Tuples can hold a variety of data types and are often used to group related data.
+	Example: my_tuple = (4, 5, 6)
+- DICTIONARIES: A collection of key-value pairs. Keys are unique and immutable (e.g., strings, numbers, tuples), while values can be of any type.
+	-CREATING A DICTIONARY:
+	Example: my_dict = {"key1": "value1", "key2": "value2"}
+			 my_dict = {"name": "Alice", "age": 30}
+	-ACCESSING ELEMENTS: can get by keys or using get() function
+	Examples:
+		Using hard coded string:
+		print(my_dict["name"])  # Output: Alice
+
+		Using get() function: It is a safer way to access elements, returns None or a default value if the key doesn’t exist.
+		print(my_dict.get("age"))       # Output: 30
+		print(my_dict.get("height"))    # Output: None
+		print(my_dict.get("height", 0)) # Output: 0
+	-SETTING AN ELEMENT: Either by adding or updating existing key value pairs
+	Examples:
+		Adding method:
+		my_dict["height"] = 165
+		print(my_dict)  # Output: {"name": "Alice", "age": 30, "height": 165}
+
+		Updating mathod:
+		my_dict["age"] = 31
+		print(my_dict)  # Output: {"name": "Alice", "age": 31}
+	-REMOVING AN ELEMENT:
+	Examples:
+		del method:
+		del my_dict["age"]
+		print(my_dict)  # Output: {"name": "Alice"}
+
+		pop() method: Removes a key and returns its values
+		removed_value = my_dict.pop("name")
+		print(removed_value)  # Output: Alice
+		print(my_dict)        # Output: {}
+	-CHECKING EXISTANCE:
+	Examples:
+		print("name" in my_dict)  # Output: True
+		print("height" in my_dict)  # Output: False
+	-ITERATING THROUGH DICTIONARIES
+	Examples:
+		for key in my_dict:
+			print(key)
+		for value in my_dict:
+			print(value)
+		for key, value in my_dict:
+			print(f'{key}: {value}')
+
+====================================
+10. FUNCTIONS
+====================================
+
+- DEFINING: Create reusable code blocks.
+    Example:
+    def greet(name):
+        print(f"Hello, {name}!")
+- CALLING: Execute a function.
+    Example: greet("Alice")
+- RETURN VALUE: Return a result.
+    Example: return a + b
+- PARAMETERS: Variables a function accepts.
+    Example: def multiply(x, y):
+- ARGUMENTS: The "parameters" defined in the function call.
+	Example: multiply(50, 30)
+- DEFAULT PARAMETERS: Function has default values it can go to if no arguments are provided!
+	Example: def greet(name="Guest")
+- RECURSION: A function calling itself to solve smaller instances of a problem.
+	Example (Factorial):
+	def factorial(n):
+		if n == 0 or n == 1:  # Base case
+			return 1
+		return n * factorial(n - 1)  # Recursive case
+	factorial(5)  # Output: 120
+
+	- Key Components of Recursion:
+		- Base Case: Stops the recursion.
+		- Recursive Case: Function calls itself with smaller inputs.
+	- When to Use:
+		- Solving problems that can be broken into smaller subproblems.
+		- Examples: Factorial, Fibonacci, Tree Traversal.
+- ITERATION: Repetition using loops (e.g., `for`, `while`) to achieve the same goal as recursion without function calls.
+	Example (Factorial):
+	def factorial_iterative(n):
+		result = 1
+		for i in range(1, n + 1):
+			result *= i
+		return result
+	factorial_iterative(5)  # Output: 120
+
+	- Key Components of Iteration:
+		- Initialization: Prepare variables (e.g., `result = 1`).
+		- Condition: When the loop should run (e.g., `for i in range(1, n + 1)`).
+		- Update: How the loop moves forward (e.g., `i += 1`).
+
+	- When to Use:
+		- For problems that involve repetitive tasks over known data structures.
+		- Examples: Summing a list, counting items, simple loops.
+- NOTES:
+	- If your function does NOT have a return and you assign your function call to a variable and print it, it will print 'None' (handy)
+		- This would also be a void functions
+
+====================================
+11. IMPORT BASICS
+====================================
+
+- IMPORT STATEMENT: Import modules.
+    Example: import math
+- SPECIFIC FUNCTION IMPORT: Import specific functions.
+    Example: from math import sqrt
+- MULTIPLE SPECIFIC FUNCTION IMPORT: Import multiple functions from a library
+	Example: from math import sqrt, pi
+- ALIAS: Use short names for modules.
+    Example: import pandas as pd
+- IMPORT ALL: Imports all functions from a module (not recommended for larger modules due to potential conflicts).
+	Example: from math import *
+
+====================================
+12. TURTLE GRAPHICS BASICS
+====================================
+
+- SETUP: Initialize the window.
+    Example: turtle.setup(500, 500)
+- CREATE TURTLE: Instantiate a turtle.
+    Example: my_turtle = turtle.Turtle()
+- MOVEMENT COMMANDS:
+    Forward: my_turtle.forward(100)
+    Backward: my_turtle.backward(50)
+    Right: my_turtle.right(90)
+    Left: my_turtle.left(90)
+	Goto: my_turtle.goto(50,30)
+	SetHeading: my_turtle.setheading(angle)
+- PEN CONTROL:
+    Pen Up: my_turtle.pu()
+    Pen Down: my_turtle.pd()
+- COLOR: Change pen color.
+    Example: my_turtle.pencolor("red"), my_turtle.beginfill()
+- EXIT: Finish turtle graphics.
+    Example: turtle.done(), turtle.exitonclick()
+
+====================================
+13. OBJECT-ORIENTED BASICS
+====================================
+- CLASSES: A class is called a blueprint for an object in Python.
+- DEFINE A CLASS: Definition of a class which holds methods and is an object
+	Example:
+		class MyClass:
+		# Class attributes and methods go here
+
+		def __init__(self, param1, param2):
+			# Constructor method for initializing instances
+			self.param1 = param1
+			self.param2 = param2
+- METHOD DEFINITION: Define a method which is a function that can be used with the class object, methods act on the data or variables in a class
+	Example(s):
+		def my_method(self, param1, param2):
+		# method stuff goes here!
+>>OR if you Instantiated already and passed params to the class object then
+		def my_method(self):
+		# call whatever you Instantiated in the __init__ method for example:
+		class Triangle:
+			def __init__(self, base, height):
+				self.base = base
+				self.height = height
+
+			def area(self):
+				return (self.base * self.height/2)
+
+		triangle_area = Triangle(5,5)
+		print(triangle_area.area())
+
+- CLASS INSTANTIATION: Instantiate the class object in your code
+	Example: obj = MyClass(param1_value, param2_value)
+- CLASS ATTRIBUTES: Variables that hold data associated with an object.
+	Example:
+		class Car:
+			def __init__(self, brand, model):
+				self.brand = brand
+				self.model = model
+	- Public attributes: can be accessed and modified freely from outside the class.
+		Example:
+			class Example:
+				def __init__(self):
+					self.name = "Public Attribute"  # Public attribute
+
+			obj = Example()
+			print(obj.name)  # Output: Public Attribute
+			obj.name = "New Value"  # Modify public attribute
+			print(obj.name)  # Output: New Value
+	- Private attributes: intended to be hidden from direct access and modified only through methods. (has __)
+		Example:
+			class Example:
+				def __init__(self):
+					self.__secret = "Private Attribute"  # Private attribute
+
+				def get_secret(self):  # Getter method to access private attribute
+					return self.__secret
+
+				def set_secret(self, value):  # Setter method to modify private attribute
+					self.__secret = value
+
+				obj = Example()
+				print(obj.get_secret())  # Output: Private Attribute
+				obj.set_secret("New Secret")
+				print(obj.get_secret())  # Output: New Secret
+
+				# Direct access to __secret will raise an AttributeError
+				print(obj.__secret)  # AttributeError
+
+				# Access via name mangling
+				print(obj._Example__secret)  # Output: New Secret
+	-Protected attributes:prefixed with a single underscore (_) are not strictly private but are meant to signal to developers that they are intended for internal use only.
+		Example:
+			class Example:
+				def __init__(self):
+					self._internal = "Protected Attribute"
+
+			obj = Example()
+			print(obj._internal)  # Output: Protected Attribute
+			obj._internal = "New Value"
+			print(obj._internal)  # Output: New Value
+
+- CLASS INHERITENCE: inheritence is when a class obtains the methods and attributes of a parent class, a class can inherit from multiple parent classes by listing them in parentheses after the class name.
+	Syntax: class myClass(myOtherClass, myOtherOtherClass):  # If more than one class your inheriting from
+	Example:
+		class Sea:
+			def __init__(self):
+				print("Sea class initialized")
+
+			def sea_method(self):
+				print("Method from Sea class")
+
+
+		class Ocean:
+			def __init__(self):
+				print("Ocean class initialized")
+
+			def ocean_method(self):
+				print("Method from Ocean class")
+
+
+		class Fish(Sea, Ocean):  # Inherits from Sea and Ocean in that order / Sea and Ocean are considered parent classes (superclass), and Fish is the child class
+			def __init__(self):
+				# Call the parent class constructors
+				super().__init__()  # Calls the constructor of the first parent class in the order
+				print("Fish class initialized")
+
+			def fish_method(self):
+				print("Method from Fish class")
+
+		# Example usage
+		fish = Fish()             # Instantiates the Fish class
+		fish.sea_method()         # Access method from Sea class
+		fish.ocean_method()       # Access method from Ocean class
+		fish.fish_method()        # Access method from Fish class
+- GETTER / SETTER METHODS
+	Getter: A method to retrieve the value of an attribute.
+	Example:
+	def get_attribute_name(self):
+		return self.attribute_name
+	Setter: A method to update or set the value of an attribute
+	Example:
+	def set_attribute_name(self, value):
+    	self.attribute_name = value
+
+
+====================================
+14. FILE HANDLING AND PICKLE
+====================================
+- BASIC FILE HANDLING:
+- Opening a File for reading
+	Example:
+	file = open("file.txt", "r")
+	# Read data from the file using file.read()
+	data = file.read()
+	file.close()
+- Opening a File for writing
+	Example:
+	file = open("file.txt", "w")
+	# Write data to the file using file.write()
+	file.write("Hello, World!")
+	file.close()
+
+- PICKLE: Serialize and deserialize Python objects
+	What does this mean?
+	Serialization: Converting a Python object into a byte stream (a sequence of bytes) that can be stored in a file, sent over a network, or used in other ways.
+	Deserialization: Reconstructing the original Python object from the byte stream.
+
+	Example:
+		import pickle
+
+		# Data to serialize
+		my_data = {"name": "Alice", "age": 30, "is_student": False}
+
+		# Serialize and save to a file
+		with open("data.pkl", "wb") as f:  # Open file in binary write mode
+			pickle.dump(my_data, f)       # Serialize the dictionary and save it to the file
+
+		# Deserialize and load from the file
+		with open("data.pkl", "rb") as f:  # Open file in binary read mode
+			loaded_data = pickle.load(f)  # Read and reconstruct the dictionary
+
+		print(loaded_data)  # Output: {'name': 'Alice', 'age': 30, 'is_student': False}
+
+
+====================================
+15. UNIX/DOS COMMANDS
+====================================
+
+What is UNIX?
+UNIX is an operating system (OS)
+◦ Multiuser – computer system used by more than one person at the same time
+◦ Multithreaded – multiple simultaneous use of the same program
+◦ Multitasking – handles more than one job (task) per person at the same time
+
+- The philosophy behind the design of UNIX was to provide simple, yet powerful utilities that could be pieced together in a flexible manner to perform a wide variety of tasks.
+- UNIX is not so much a single operating system as it is a standard upon which organizations and companies base their own systems.
+	Examples: AIX (IBM), Solaris (Sun Microsystems), IRIX (SGI), BSD/OS (BSDi), FreeBSD, and Linux (GNU)
+
+- The main purpose of Unix is to execute PROGRAM(S)/APPLICATION(S).
+
+__________________________________________________________________________________
+|   DOS Command    |  Unix Command    | Description                              |
+|------------------|------------------|------------------------------------------|
+| CD               | cd               | Change directory                         |
+| CHKDSK           | du               | Disk usage                               |
+| CLS              | clear            | Clear the current screen                 |
+| COPY             | cp               | Copying files                            |
+| DEL              | rm               | Removing files or directories            |
+| DIR              | ls               | File listing of directories              |
+| MKDIR            | mkdir            | Create a directory                       |
+| MORE             | more             | Type out a file with paging              |
+| PRINT            | lpr              | Print out a file                         |
+| RD               | rmdir            | Remove a directory                       |
+| MOVE             | mv               | Moving files                             |
+| TYPE             | cat              | Display contents of files                |
+
+- SHELL: The part of the UNIX op system that interfaces with the user.
+- KERNEL: The core part of the Unix operating system that interfaces with the hardware.
+- OS: Stands for Operating System, coordinates the computer's hardware components (processor, memory, disk drives, peripherals) to perform tasks.
+	Examples of OS: Handles tasks like starting programs, copying files, and displaying directories.
+
+Other UNIX commands and variables:
+"d" -> indicates a directory when using the ls command in UNIX
+"-" -> indicates a regular ol file
+"l" -> indicates a symbolic link
+
+Permissions:
+"r" -> stands for read
+"w" -> stands for write
+"x" -> stands for execute
+
+Permission Group:
+"Owner" (User) -> the user who OWNS the file or directory
+	"rwx" -> Read, Write, Execute for the file Owner
+"Group" -> A group of users who share access rights
+	"r-x" -> Read, Execute for the Group
+"Others" (world) -> Everyone else
+	"r--" -> Read-only for everyone else
+
+Examples:
+	-rw-r--r--:
+
+	Regular File with:
+	Owner: Read and write.
+	Group: Read-only.
+	Others: Read-only.
+
+	-rwxr-x---:
+
+	Regular File with:
+	Owner: Read, write, and execute.
+	Group: Read and execute.
+	Others: No access.
+
+	drwxr-xr-x:
+
+	Directory with:
+	Owner: Read, write, execute.
+	Group: Read and execute.
+	Others: Read and execute.
+
+Octal Representation of Permissions
+Permissions can also be represented numerically using octal notation:
+
+r = 4 (Read)
+w = 2 (Write)
+x = 1 (Execute)
+
+Sum of values determines the permission:
+7 (rwx): Full permissions (4+2+1).
+6 (rw-): Read and write.
+5 (r-x): Read and execute.
+4 (r--): Read-only.
+
+
+====================================
+16. BIG O NOTATION
+====================================
+
+What is Big O Notation?
+Describes the growth rate of an algorithm’s runtime or memory usage as the input size increases.
+
+- Worst Case: Maximum time required (most common Big O  analysis)
+- Average Case: Average time over all inputs (harder to calculate)
+- Best Case: Minimum tme required (less practical for analysis)
+
+Common Growth Functions:
+
+O(1): Constant time – Independent of input size.
+	Example: Accessing an array element.
+		def get_first_element(arr):
+			return arr[0]  # Accessing one element
+
+		for i in range(100):  # Constant Time given hard coded range
+			x=i*5
+
+O(log n): Logarithmic time – Reduces the input size by half each step.
+	Example: Binary search.  # With each iteration, the input size n is halved
+	def binary_search(arr, target):
+		left, right = 0, len(arr) - 1
+		while left <= right:
+			mid = (left + right) // 2
+			if arr[mid] == target:
+				return mid
+			elif arr[mid] < target:
+				left = mid + 1
+			else:
+				right = mid - 1
+	return -1
+
+O(n): Linear time – Grows proportionally with input size.
+	Example: Linear search.
+		def print_elements(arr):  # The time grows linear with the size of arr
+			for element in arr:
+				print(element)
+
+O(n log n): Log-linear time – Combines linear and logarithmic growth.
+	Example: Merge sort.
+
+O(n²): Quadratic time – Growth is proportional to the square of input size.
+	Example: Nested loops, Bubble sort.
+
+O(n^3): Cubic time - Growth is proportional to the cubed of the input size.
+	Example: IDK never really came across this one
+
+O(2ⁿ): Exponential time – Doubles with each additional input.
+	Example: Recursive Fibonacci.
+	def print_pairs(arr):  # Two nested loops cause the time top grow proportionally to the square of the input size
+		for i in range(len(arr)):
+			for j in range(len(arr)):
+				print(arr[i], arr[j])
+
+Comparing:
+O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(n^3) < O(2ⁿ)
+Best													Worst
+
+Ignoring Constants and Non-Dominating Terms
+Multiplicative Constants: O(2n) simplifies to O(n).
+Non-Dominating Terms: n + log n simplifies to O(n) (dominant term is n).
+
+Examples:
+Linear Search: O(n)
+	- Sequentially compares elements until the target is found or array is exhausted.
+Binary Search: O(log n)
+	- Repeatedly divides a sorted array in half.
+Selection Sort: O(n²)
+	- Finds the smallest element and moves it to the correct position in each iteration.
+Recursive Fibonacci: O(2ⁿ)
+	- Recursively computes Fibonacci numbers by solving overlapping subproblems.
+
+Analyzing Loops:
+Single Loop(O(n)):
+Example:
+	for i in range(n):  # Executes n times
+		print(i)
+Nested Loops(O(n²)):
+Example:
+	for i in range(n):
+		for j in range(n):  # Inner loop runs n times for each outer iteration
+			print(i,j)
+
+END NOTE:
+The Big O notation provides a good theoretical
+estimate of algorithm efficiency. However, two
+algorithms of the same time complexity are not
+necessarily equally efficient.
+
+====================================
+17. SORTING ALGORITHMS
+====================================
+
+Bubble Sort: Repeatedly swaps adjacent elements if they are in the wrong order
+- Time Complexity:
+	Worst Case: O(n²)
+	Best Case: O(n) (when array is already sorted)
+Example:
+	def bubble_sort(arr):
+		n=len(arr)
+		for i in range(n):
+			for j in range(0, n-i-1):
+				if arr[j] > arr[i]:
+					arr[j], arr[j+1] = arr[j+1], arr[j]
+
+Merge Sort: Divides the array into two halves, sorts each half recursively, and merges them (as in the name merge sort)
+- Time Complexity:
+	Worst/Average/Best Case: O(n log n)
+Example:
+	def merge_sort(arr):
+		if len(arr() > 1):
+			mid = len(arr) // 2
+			left = arr[:mid]
+			right = arr[mid:]
+
+			merge_sort(left)
+			merge_sort(right)
+
+			i = j = k = 0
+			while i < len(left) and j < len(right):
+				if left[i] < right[j]:
+					arr[k] = left[i]
+					i += 1
+				else:
+					arr[k] = right[j]
+					j += 1
+				k += 1
+
+			while i < len(left):
+				arr[k] = left[i]
+				i += 1
+				k += 1
+
+			while j < len(right):
+				arr[k] = right[j]
+				j += 1
+				k += 1
+
+Quick Sort: Selects a pivot, partitions the array into elements smaller and larger than the pivot, and sorts them recursively.
+- Time Complexity:
+	Worst Case: O(n²) (when pivot is poorly chosen)
+	Average/Best Case: O(n log n)
+Example:
+	def quick_sort(arr):
+		if len(arr) <= 1:
+			return arr
+		pivot = arr[len(arr) // 2]
+		left = [x for x in arr if x < pivot]
+		middle = [x for x in arr if x == pivot]
+		right = [x for x in arr if x > pivot]
+		return quick_sort(left) + middle + quick_sort(right)
+
+** Less Common Sorting Algorithm’s **
+
+Heap Sort: Builds a max heap from the array, then repeatadly extracts the largest element and rebuilds the heap
+- Heap: A Heap is a complete binary tree data structure that satisfies the heap property: for every node, the value of its children is greater than or equal to its own value
+- Time Complexity:
+	Worst/Average/Best Case: O(n log n)
+Example:
+	import heapq
+	def heap_sort(arr):
+		heapq.heapify(arr)
+		return [heapq.heappop(arr) for _ in range(len(arr))]
+
+Bucket Sort: Distributes elements into buckets, sorts each bucket individually, and merges them.
+- Time Complexity: O(n) (if the data is uniformly distributed)
+Example Use Case: Effective for floating-point numbers
+
+Radix Sort: Sorts numbers digit by digit, starting from the least significant digit.
+- Time Complexity: O(nk) where k is the number of digits in the largest number.
+
+====================================
+18. EXTRA BITS (Random stuff)
+====================================
+
+====================================
+DECIMAL <-> HEXIDECIMAL STUFF
+====================================
+
+Decimal to Hexidecimal Code (Python)
+
+decimal_value = 190
+hex_value = hex(decimal_value)
+print(hex_value)  # Output: '0xbe'
+
+
+Hexidecimal to Decimal Code (Python)
+
+hex_value = "0x1a3" #<-- Add the hex value behind the 0x!
+decimal_value = int(hex_value, 16)
+print(decimal_value)  # Output: 419
+
+====================================
+PRACTICE PROGRAMMING PROBLEMS
+====================================
+
+PRACTICE EXAM 1: Question 44 (Practice Exam): Add all even numbers from 1 to N.
+Answer:
+	N = 10
+	print(sum(range(2, N+1, 2)))
+
+PRACTICE EXAM 2: Question 12: One of the major advantages of Object Oriented programming over procedural programming is that classes can be loaded into modules.
+Answer:
+	False (apparently...)
+
+# Q1: Loops and User Input
+# Objective: Write a Python program that asks the user to input ten integers. Use a loop to collect these integers and then print out their sum.
+
+numbers = []
+
+for x in range(10):
+	number = int(input('Please give 10 integers: '))
+	numbers.append(number)
+
+total = sum(numbers)
+
+print(f'The numbers list: {numbers}')
+print(f'The total of numbers list is: {total}')
+
+
+# Q2 Working with Lists
+# Objective: Create a Python function that accepts a list of numbers as its parameter.
+# The function should return a new list that contains only the even numbers from the original list.
+# Demonstrate the function by calling it with a list of numbers and printing the result.
+
+def evenList(input_list):
+	even = []
+	for num in input_list:
+		if num % 2 == 0:
+			even.append(num)
+	return even
+
+
+main_list = [1,2,3,4,5,6,7,8,9,10]
+outcomelist = evenList(main_list)
+
+print(main_list)
+print(outcomelist)
+
+# Q3 Functions and Lists
+# Objective: Write a Python function named max_min_difference that takes a list of integers
+# and returns the difference between the maximum and minimum numbers in the list.
+# Test your function with a list of integers entered by the user.
+
+def max_min_difference(input_list):
+	input_list.sort()
+	difference = input_list[-1] - input_list[0] # Couldve used min max tbh smh bruh
+	return difference
+
+main_list = [1,4,9,23,12,43,2,19]
+outcome = max_min_difference(main_list)
+print(outcome)
+
+# Q4 PICKLE MODULE
+# Objective: Write a Python program that defines a dictionary containing the names and ages of five people.
+# Use the pickle module to serialize this dictionary and save it to a file named "people.pickle".
+# Then, write another part of the program that reads this file, deserializes the dictionary, and prints it out.
+
+import pickle
+
+my_dict = [
+		{'name': 'Aiden', 'age': 12},
+		{'name': 'Caleb', 'age': 4},
+		{'name': 'Josh', 'age': 19},
+		{'name': 'Daniel', 'age': 1},
+		{'name': 'Aameera', 'age': 14}
+	]
+
+with open('people.pickle', 'wb') as f:
+	pickle.dump(my_dict, f)
+
+with open('people.pickle', 'rb') as f:
+	loaded_people = pickle.load(f)
+
+print(loaded_people)
+
+#Q5 Geometric Shapes and Classes - Triangle
+# Objective: Define a Python class named Triangle with methods to calculate its area.
+# The class should have three attributes: base and height.
+# Include a method named area that returns the area (base * height/2).
+# Include the instantiation and method call.
+
+class Triangle:
+	def __init__(self, base, height):
+		self.base = base
+		self.height = height
+
+	def area(self):
+		return (self.base * self.height/2)
+
+triangle_area = Triangle(base=5, height=5)
+print(triangle_area.area())
+
+#Q6 Classes with Methods
+# Objective: Create a Python class named Circle. It should have an attribute radius and include the following methods:
+# A method to calculate the area of the circle.
+# A method named describe that prints a description of the circle including its radius and area.
+# Include the instantiation and method call.
+
+import math
+
+class Circle:
+	def __init__(self, radius):
+		self.radius = radius
+		self.area = 'N/A' # Default param setting since we dont calculate it yet
+
+	def circleArea(self):
+		self.area = round(math.pi * self.radius**2, 2)
+		return self.area
+
+	def description(self):
+		print(f'The circles area is {self.area} with a radius of {self.radius}')
+
+circle_obj = Circle(radius=5)
+circle_obj.circleArea()
+circle_obj.description()
+
+===================================================
+        	Data Unit Conversion Chart
+===================================================
+
+  Unit                   | Equivalent
+--------------------------------------------------------------------
+  1 Kilobyte (KB)        | 1 KB = 1,000 bytes (SI Standard)
+  1 Megabyte (MB)        | 1 MB = 1,000 KB = 1,000,000 bytes
+  1 Gigabyte (GB)        | 1 GB = 1,000 MB = 1,000,000,000 bytes
+  1 Terabyte (TB)        | 1 TB = 1,000 GB = 1,000,000,000,000 bytes
+--------------------------------------------------------------------
+  1 Byte                 | 1 Byte = 8 bits
+  1 Kilobit (Kb)         | 1 Kb = 1,000 bits (SI Standard)
+  1 Megabit (Mb)         | 1 Mb = 1,000 Kb = 1,000,000 bits
+  1 Gigabit (Gb)         | 1 Gb = 1,000 Mb = 1,000,000,000 bits
+--------------------------------------------------------------------
+  1 Nibble               | 1 Nibble = 4 bits
+  1 Byte                 | 1 Byte = 2 Nibbles
+
+===================================================
+
+====================================
+HISTORY FACTS
+====================================
+
+Python Facts:
+
+Python was named after Monty Python!
+Python was made/launched February 20, 1991, by Guido van Rossum in the Netherlands.
+Python is an open-source language, meaning its source code is freely available and can be modified and distributed by anyone.
+Python is a versatile language used in web development, data science, machine learning, scientific computing, automation, and more.
+
+UNIX Facts:
+
+UNIX was created in the late 1960s, in an effort to provide a multiuser, multitasking system for use by programmers
+UNIX was developed at Bell Labs (or nowadays AT&T) in 1969
+UNIX was written in C, a high-level, machine-independent language
+UNIX is still the most common operating system for the computers that make up the Internet and the World Wide Web.
+
+====================================
+MISC
+====================================
+Python Things:
+
+Modules: A Python module is a file containing Python code (e.g., .py file).
+		Classes defined in one module can be imported and reused in other scripts or modules,
+		promoting modularity, code reuse, and organization.
+
+Decorators (@): is a function that modifies the behavior of another function or method. Decorators allow you to wrap additional functionality around existing code without modifying it directly
+	Example:
+	# Define a decorator
+	def my_decorator(func):
+		def wrapper():
+			print("Something before the function runs.")
+			func()
+			print("Something after the function runs.")
+		return wrapper
+
+	# Apply the decorator
+	@my_decorator
+	def say_hello():
+		print("Hello!")
+
+	# Call the decorated function
+	say_hello()
+
+(IF ALLOWED TO USE)
+NumPy: A library that provides a wide range of mathematical functions, including:
+	- add(): Element-wise addition of two arrays.
+	- subtract(): Element-wise subtraction of two arrays.
+	- multiply(): Element-wise multiplication of two arrays.
+	- divide(): Element-wise division of two arrays.
+	- dot(): Dot product of two arrays.
+	- sum(): Computes the sum of all elements in an array.
+	- mean(): Computes the mean (average) of array elements.
+	- max(): Finds the maximum value in the array.
+	- min(): Finds the minimum value in the array.
+	- sqrt(): Computes the square root of each element.
+	- exp(): Computes the exponential (e^x) for each element.
+
+Rabbit Hole (Most likely useless but interesting):
+
+X-Windows (X11): a windowing system for bitmap displays, common on UNIX-like OS.
