@@ -18,7 +18,8 @@ TABLE OF CONTENTS
 15. UNIX/DOS COMMANDS
 16. BIG O NOTATION
 17. SORTING ALGORITHMS
-18. EXTRA BITS
+18. LIBRARIES
+19. EXTRA BITS
 
 ONLINE DEBUGGER PYTHON - https://www.onlinegdb.com/online_python_debugger
 ONLINE UNIX CMD PROMPT - https://bellard.org/jslinux/vm.html?url=alpine-x86.cfg
@@ -905,7 +906,74 @@ Radix Sort: Sorts numbers digit by digit, starting from the least significant di
 - Time Complexity: O(nk) where k is the number of digits in the largest number.
 
 ====================================
-18. EXTRA BITS (Random stuff)
+18. LIBRARIES
+====================================
+
+Python libraries enhance programming capabilities with robust tools for numerical computation, symbolic mathematics, data visualization, and more. Below are some of the most commonly used libraries:
+
+NumPy: The Core of Numerical Computing
+- Purpose: Supports multidimensional arrays and provides vectorized operations for fast computation.
+- **Key Features**:
+  - Efficient computation with C libraries (BLAS, LAPACK).
+  - Widely used in data science and machine learning.
+  - Example:
+    import numpy as np
+    a = np.array([1, 2, 3])
+    b = np.zeros((2, 2))
+    c = np.ones((3, 3))
+    d = np.arange(0, 10, 2)
+    print(a, b, c, d)
+ 
+SciPy: Extending NumPy
+- Purpose: Provides advanced numerical methods like integration and optimization.
+- Example:
+  from scipy.integrate import quad
+  def f(x):
+      return x**2
+  result, _ = quad(f, 0, 1)
+  print('Integral:', result)
+
+SymPy: Symbolic Mathematics
+- Purpose: Perform symbolic computation and simplifications.
+- Example:
+  from sympy import symbols, simplify
+  x = symbols('x')
+  expr = x**2 + 2*x + 1
+  simplified = simplify(expr)
+  print(simplified)
+
+Matplotlib: Data Visualization
+- Purpose: Create professional-quality plots (line plots, bar charts, histograms, etc.).
+- Example:
+  import matplotlib.pyplot as plt
+  x = [1, 2, 3, 4, 5]
+  y = [1, 4, 9, 16, 25]
+  plt.plot(x, y, label='y = x^2')
+  plt.title('Line Plot Example')
+  plt.xlabel('x-axis')
+  plt.ylabel('y-axis')
+  plt.legend()
+  plt.show()
+
+OpenCV: Computer Vision and Image Processing
+- Purpose: Real-time video analysis and image processing.
+- Example:
+  import cv2
+  image = cv2.imread('example.png', cv2.IMREAD_GRAYSCALE)
+  edges = cv2.Canny(image, 50, 150)
+  cv2.imwrite('edges.png', edges)
+  cv2.imshow('Edges', edges)
+  cv2.waitKey(0)
+  cv2.destroyAllWindows()
+
+Summary
+- NumPy and SciPy: For numerical tasks.
+- SymPy: For symbolic computation.
+- Matplotlib: For visualizations.
+- OpenCV: For computer vision and image processing.
+
+====================================
+19. EXTRA BITS (Random stuff)
 ====================================
 
 ====================================
@@ -1050,9 +1118,9 @@ circle_obj = Circle(radius=5)
 circle_obj.circleArea()
 circle_obj.description()
 
-===================================================
+======================================================================================================
         	Data Unit Conversion Chart
-===================================================
+======================================================================================================
 
   Unit                   | Equivalent
 --------------------------------------------------------------------
@@ -1069,7 +1137,7 @@ circle_obj.description()
   1 Nibble               | 1 Nibble = 4 bits
   1 Byte                 | 1 Byte = 2 Nibbles
 
-===================================================
+======================================================================================================
 
 ====================================
 HISTORY FACTS
@@ -1133,3 +1201,4 @@ NumPy: A library that provides a wide range of mathematical functions, including
 Rabbit Hole (Most likely useless but interesting):
 
 X-Windows (X11): a windowing system for bitmap displays, common on UNIX-like OS.
+
