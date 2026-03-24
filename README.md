@@ -18,15 +18,17 @@ This repository showcases the work I’ve done from the start of my university j
 ### Current Languages Taught at UT
 
 - **Python**: Data manipulation, analysis, and machine learning projects utilizing libraries like pandas, numpy, and scikit-learn.
+- **Jupyter**: Data manipulation again, more step-by-step similar to using Google Collab, etc.
+- **R**: Statistical computing, data analysis, and visualization using libraries.
 - **SAS**: Data processing, statistical analysis, and data visualization using SAS.
 - **SPSS**: Statistical analysis using T-tests, ANOVA, and regression models.
-- **R**: (Coming Soon) Statistical computing, data analysis, and visualization using libraries.
 
 ### Tools/Software Used
 
 - Base SAS 9.4
-- Microsoft Visual Studio Code
+- Base R 4.5.2
 - RStudio
+- Microsoft Visual Studio Code (with SAS, R, and Jupyter ext.)
 - SPSS
 
 ## Project Structure
@@ -35,7 +37,7 @@ The repository is organized as follows:
 
 - **/Data Science I**: Projects and assignments from the introductory Data Science course, including work in Python, SAS and SPSS.
 - **/Introduction to CSET**: Basic Python projects and exercises covering syntax, control structures, functions, and introductory use of libraries.
-- **/Data Science II**: (Coming Soon) Advanced projects involving Python and R focused on machine learning and advanced statistical analysis.
+- **/Data Science II**: Advanced projects involving Python and R focused on machine learning and advanced statistical analysis.
 
 ## Contact
 
