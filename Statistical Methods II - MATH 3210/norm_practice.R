@@ -1,3 +1,5 @@
+# Section P.5
+
 # init practice
 q <- 1.4
 
@@ -14,7 +16,7 @@ mean <- 580
 std <- 70
 q <- 700
 
-print(1 - pnorm(q, mean = mean, sd = std))
+res <- 1 - pnorm(q, mean = mean, sd = std)
 
 # Example 3 ---------------------------------------------------------------
 
@@ -29,7 +31,6 @@ q <- 0.1
 print(qnorm(q, mean = mean, sd = std))  # use qnorm instead for the inverse due to the phrase "shorter than that endpoint"
 
 # Example 4 ---------------------------------------------------------------
-
 
 # What is the area below 70 in a N(100,20) distribution?
 
@@ -49,6 +50,19 @@ q <- 1 - 0.04  # we are looking ABOVE the area
 
 print(qnorm(q, mean, std))
 
+
+# Explanation of Standard Normal -----------------------------------------
+
+# If we need to find the z score, we can use qnorm(q) with our X value since 
+# it is just using the equation z = X - mu / sigma
+
+# So example if our probability is 97.5% we can do:
+
+qnorm(0.975, mean = 0, sd = 1)  # mean and sd default to 0 and 1 respectively...
+
+# This yields us a z score of 1.96 (later on we can associate this with 
+# Confidence Interval of 95%)
+
 # Example 6 ---------------------------------------------------------------
 
 # Suppose that the distribution of student heights follows a 
@@ -57,15 +71,15 @@ print(qnorm(q, mean, std))
 
 # USING STANDARD NORM DIST.
 
+# the problem tells us the mean
+
 mean <- 68
 std <- 4
 q <- 0.1
 
 # 1 - pnorm(65, 68, 4)  you can use this but we can also just calc the z score
 
-z <- qnorm()
-
-print(qnorm(q, mean = mean, sd = std))
+res <- qnorm(q, mean = mean, sd = std)
 
 
 # Example 7 ---------------------------------------------------------------
@@ -80,6 +94,23 @@ z <- qnorm(q)
 
 # Example 8 ---------------------------------------------------------------
 
-# What is the endpoint z in a standard normal distribution if the area between z and –z is 0.60?
+# What is the endpoint z in a standard normal distribution if the area between 
+# z and –z is 0.60?
 
 area_between <- 0.6
+
+
+# Example 9 ---------------------------------------------------------------
+
+# Given X ~ N(70, 3)
+
+# What proportion are taller than 75 inches?
+1 - pnorm(75, 70, 3)
+
+
+# Example 10 --------------------------------------------------------------
+
+# Given X ~ N(500, 100)
+
+# What score cuts off the bottom 20%?
+qnorm(0.2, 500, 100)
