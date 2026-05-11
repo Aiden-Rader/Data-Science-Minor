@@ -1,0 +1,8 @@
+{
+  "bundle": "t003_nested_loops_sunlight",
+  "source_file": "Data Science II - HHS 4500/SAS/In-Class & Homework/Nested_Loop_Aiden_Rader.sas",
+  "source_blob_sha": "adbe9417f44c39acc9421f79bc5596b6ba01cd87",
+  "source_commit": "f3ebd5f4920652b384482087890324e7b7f792a9",
+  "tier": "real_data",
+  "notes": "Nested DO loops that simulate the relationship between sunlight and temperature in two seasons: a linear summer relationship (50 + 0.4*sunlight) and a non-linear winter relationship (quadratic with a max(0,_) floor). Yields 42 rows over sunlight=0..100 by 5 for each of summer in {1,0}."
+}

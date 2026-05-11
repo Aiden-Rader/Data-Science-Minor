@@ -1,0 +1,34 @@
+Jenner 0.1.0 (Unlicensed - limited to 100 observations)
+Get a license at https://jenneranalytics.com/license
+
+NOTE: Option OBS changed to 100.
+NOTE: DATA new_data
+
+NOTE: Processing inline DATALINES (5 lines)
+
+NOTE: Read 5 rows from DATALINES.
+NOTE: Wrote new_data (5 rows, 2 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: DATA new_data
+
+
+NOTE: Read 5 rows from new_data.
+NOTE: Wrote new_data (5 rows, 2 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: PROC PRINT data=new_data
+
+NOTE: PROC PRINT completed: 5 observations printed, 2 variables
+NOTE: DATA new_data2
+
+
+NOTE: Wrote new_data2 (21 rows, 1 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: PROC PRINT data=new_data2
+
+NOTE: PROC PRINT completed: 21 observations printed, 1 variables

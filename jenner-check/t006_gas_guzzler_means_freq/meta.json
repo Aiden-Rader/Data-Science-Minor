@@ -1,0 +1,8 @@
+{
+  "bundle": "t006_gas_guzzler_means_freq",
+  "source_file": "Data Science I - HHS 2500/SAS/data_wrangling_wSAS.sas",
+  "source_blob_sha": "5175a96dabe519fafd4f1dbdb463b43abd424c99",
+  "source_commit": "f3ebd5f4920652b384482087890324e7b7f792a9",
+  "tier": "real_data",
+  "notes": "Tag every sashelp.cars row with a gas_guzzler indicator on Cylinders > 6, then a PROC FREQ on the indicator and a PROC MEANS on MPG_city grouped by it. Closes with a three-level cylinder bucket variable and its frequency table."
+}

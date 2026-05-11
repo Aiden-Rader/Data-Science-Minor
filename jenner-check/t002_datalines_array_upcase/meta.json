@@ -1,0 +1,8 @@
+{
+  "bundle": "t002_datalines_array_upcase",
+  "source_file": "Data Science II - HHS 4500/SAS/In-Class & Homework/SAS_Basics_Aiden_Rader.sas",
+  "source_blob_sha": "4532e5850c0edeb8c60f6d46248972d92cbed4c9",
+  "source_commit": "f3ebd5f4920652b384482087890324e7b7f792a9",
+  "tier": "real_data",
+  "notes": "Steps 6, 7, and 9 of the SAS Basics exercise: build a dataset from DATALINES with five name records, then apply UPCASE through an unspecified-length array over _character_ via dim(); then a second dataset generated entirely inside a DO loop. Both PROC PRINT outputs included verbatim."
+}

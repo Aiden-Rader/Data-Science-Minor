@@ -1,0 +1,28 @@
+
+PROC PRINT: cars
+-------------------------------------------------------------------------------
+
+  Obs       MAKE           MODEL  CYLINDERS  VAR1  SMALL_ENGINE  COUNT
+-----  ---------  --------------  ---------  ----  ------------  -----
+    1  Acura      MDX                     6     7             0      1
+    2  Acura      RSX Type S 2dr          4     7             1      2
+    3  Acura      TSX 4dr                 4     7             1      3
+    4  Acura      TL 4dr                  6     7             0      4
+    5  BMW        325Ci 2dr               6     7             0      5
+    6  BMW        X5 4.4i                 8     7             0      6
+    7  Chevrolet  Cavalier 4dr            4     7             1      7
+    8  Ford       Focus LX 4dr            4     7             1      8
+    9  Honda      Accord LX 4dr           4     7             1      9
+   10  Honda      Civic DX 4dr            4     7             1     10
+
+... 2 more observations (showing 10 of 12)
+
+-------------------------------------------------------------------------------
+
+                                                   The FREQ Procedure
+
+                                          Cumulative    Cumulative
+SMALL_ENGINE    Frequency    Percent     Frequency      Percent
+---------------------------------------------------------------------
+0                       4     33.33            4        33.33
+1                       8     66.67           12       100.00

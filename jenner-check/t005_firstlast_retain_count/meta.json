@@ -1,0 +1,8 @@
+{
+  "bundle": "t005_firstlast_retain_count",
+  "source_file": "Data Science II - HHS 4500/SAS/In-Class & Homework/random_practice_with_cars_Aiden_Rader.sas",
+  "source_blob_sha": "3cdd2b536a60f81c980a788dbe7075d188800612",
+  "source_commit": "f3ebd5f4920652b384482087890324e7b7f792a9",
+  "tier": "real_data",
+  "notes": "PROC SORT by type model, then a DATA step with first.type / last.type processing: retain a counter, reset it on first.type, increment each row, and OUTPUT only on last.type. Produces one row per car Type with the model count for that group."
+}
