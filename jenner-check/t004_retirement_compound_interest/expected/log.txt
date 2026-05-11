@@ -1,0 +1,37 @@
+Jenner 0.1.0 (Unlicensed - limited to 100 observations)
+Get a license at https://jenneranalytics.com/license
+
+NOTE: Option OBS changed to 100.
+NOTE: DATA retirement
+
+
+NOTE: Wrote retirement (6 rows, 2 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: Option TITLE changed to Retirement Account Balance per Year.
+NOTE: PROC PRINT data=retirement
+
+NOTE: PROC PRINT completed: 6 observations printed, 2 variables
+NOTE: DATA retirement
+
+
+NOTE: Wrote retirement (6 rows, 3 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: Option TITLE changed to Retirement Account Balance per Year (Quarterly Compounded).
+NOTE: PROC PRINT data=retirement
+
+NOTE: PROC PRINT completed: 6 observations printed, 3 variables
+NOTE: DATA retirement
+
+
+NOTE: Wrote retirement (6 rows, 2 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: Option TITLE changed to Retirement Account Balance per Year (Quarter Column Dropped).
+NOTE: PROC PRINT data=retirement
+
+NOTE: PROC PRINT completed: 6 observations printed, 2 variables

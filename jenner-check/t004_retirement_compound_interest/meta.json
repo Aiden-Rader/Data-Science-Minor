@@ -1,0 +1,8 @@
+{
+  "bundle": "t004_retirement_compound_interest",
+  "source_file": "Data Science I - HHS 2500/SAS/Do_loops_worksheet.sas",
+  "source_blob_sha": "a2d8ad72c86f25da058345d5a2b56d1d95381696",
+  "source_commit": "f3ebd5f4920652b384482087890324e7b7f792a9",
+  "tier": "real_data",
+  "notes": "Lesson 6 Practice 1 of the worksheet: a six-year iterative DO loop that adds $500 per year, then an inner DO loop applying quarterly compounded interest at 7.5% annual rate, then a third variant that drops the Quarter index. All three PROC PRINTs are emitted with dollar12.2 formatting."
+}

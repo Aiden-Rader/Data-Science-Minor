@@ -1,0 +1,31 @@
+                                Gas guzzlers in the sashelp.cars sample (Cylinders > 6)                                 
+
+                                                   The FREQ Procedure
+
+                                         Cumulative    Cumulative
+GAS_GUZZLER    Frequency    Percent     Frequency      Percent
+--------------------------------------------------------------------
+0                     11     91.67           11        91.67
+1                      1      8.33           12       100.00
+                                             MPG_city by gas_guzzler group                                              
+
+                                                  The MEANS Procedure                                                   
+
+                                       Analysis Variable : City miles per gallon                                        
+
+        GAS_GUZZLER          N Obs           Mean        Std Dev        Minimum        Maximum
+        --------------------------------------------------------------------------------------
+        0                       11     24.5454545      4.7615887     17.0000000     32.0000000
+        1                        1     16.0000000              .     16.0000000     16.0000000
+        --------------------------------------------------------------------------------------
+
+                                    Three-group cylinder bucket distribution (anvar)                                    
+
+                                                   The FREQ Procedure
+
+                                   Cumulative    Cumulative
+ANVAR    Frequency    Percent     Frequency      Percent
+--------------------------------------------------------------
+1                8     66.67            8        66.67
+2                3     25.00           11        91.67
+3                1      8.33           12       100.00

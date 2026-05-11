@@ -1,0 +1,30 @@
+Jenner 0.1.0 (Unlicensed - limited to 100 observations)
+Get a license at https://jenneranalytics.com/license
+
+NOTE: Option OBS changed to 100.
+NOTE: DATA cars
+
+
+NOTE: Read 12 rows from sashelp.cars.
+NOTE: Wrote cars (12 rows, 16 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: PROC SORT data=cars
+
+NOTE: Unlicensed mode - input limited to 100 observations.
+NOTE: Read 12 rows from cars.
+NOTE: Wrote sorted_cars (12 rows, 16 columns).
+NOTE: NOEQUALS option acknowledged. Note: Jenner uses stable sort, so original order of ties is always preserved.
+NOTE: PROC SORT statement used.
+NOTE: DATA count_sorted_cars
+
+
+NOTE: Read 12 rows from sorted_cars.
+NOTE: Wrote count_sorted_cars (2 rows, 17 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: PROC PRINT data=count_sorted_cars
+
+NOTE: PROC PRINT completed: 2 observations printed, 2 variables

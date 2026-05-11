@@ -1,0 +1,6 @@
+                                             Number of models per car Type                                              
+
+  Obs   TYPE  COUNT
+    1  SUV        2
+    2  Sedan     10
+

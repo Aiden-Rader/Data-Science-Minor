@@ -1,0 +1,8 @@
+{
+  "bundle": "t001_cars_basics_binary_var",
+  "source_file": "Data Science II - HHS 4500/SAS/In-Class & Homework/SAS_Basics_Aiden_Rader.sas",
+  "source_blob_sha": "4532e5850c0edeb8c60f6d46248972d92cbed4c9",
+  "source_commit": "f3ebd5f4920652b384482087890324e7b7f792a9",
+  "tier": "real_data",
+  "notes": "Steps 1-4 of the SAS Basics exercise: copy sashelp.cars, set a constant var, create a small_engine binary based on Cylinders<5, and a running count. Followed by PROC PRINT (first 10 rows) and PROC FREQ on the binary. Runs unchanged against sashelp.cars."
+}
