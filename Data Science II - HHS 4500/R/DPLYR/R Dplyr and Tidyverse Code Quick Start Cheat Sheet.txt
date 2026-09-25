@@ -1,0 +1,622 @@
+There are 3 "versions" of R [], $, dplyr% %
+
+Intro to R Book: https://r4ds.had.co.nz/tidy-data.html
+
+#R is CAse SENsitive
+
+# Shortcut for pipe operator %>% is Ctrl + Shift + M (Windows) or Cmd + Shift + M (Mac).
+# Shortcut for <-  alt-minus gives: <- is alt - (e.g. alt minus)
+# Clear CONSOLE ctrl-L
+# RUN: ctrl-ENTER
+
+###############################################################################################
+#Import and Export SPSS, SAS and STATA files
+library(haven) 
+Haven enables R to read and write various data formats used by other statistical packages by wrapping the fantastic ReadStat C library written by Evan Miller. Haven is part of the tidyverse. Currently it supports:
+
+# SAS
+read_sas("mtcars.sas7bdat")
+write_sas(mtcars, "mtcars.sas7bdat")
+
+# SPSS
+read_sav("mtcars.sav")
+write_sav(mtcars, "mtcars.sav")
+
+# Stata
+read_dta("mtcars.dta")
+write_dta(mtcars, "mtcars.dta")
+
+##############SORTING DATA via ARRANGE (Dplyr)##########################
+my_data <- iris_data %>%
+  arrange(desc(petal.width), sepal.width)
+
+############################################################################
+
+
+#####################################################SLICE to subset specific rows of data ###############################
+#get rows 2, 5, and 6
+df %>% slice(2, 5, 6)
+
+#get rows 1 through 3
+df %>% slice(1:3)
+
+#get first row by group
+df %>%
+  group_by(var1) %>%
+  slice(1) # First row only
+
+#get n=100 random sample
+df %>%
+  slice_sample(n = 100)
+
+# Base R version: select random 4 rows of the dataframe
+sample_n(mydata,100)
+
+#get max or min value 
+df %>%
+  slice_min(height) or  slice_max(height)
+
+##########################################################
+
+#### Setting up Operations on NUMERIC Vars only#####################################
+data_num2 <- select_if(data, is.numeric)             # Subset numeric columns with dplyr
+data_num2
+
+df %>% mutate_if(is.character, as.numeric) # Converts all character to numeric
+
+#convert variables/colunms "assists"and "rebounds" to numeric
+df <- df %>% mutate_at(c('assists', 'rebounds'), as.numeric)
+
+###############################################################################################
+
+Alternatively, a range of functions exist to check whether or not an object is of a specific type. These very handy functions return either a logical TRUE if the input is of this specific type, or FALSE if not. Examples are:
+    is.double()
+    is.numeric()
+    is.integer()
+    is.logical()
+    is.character()
+    is.vector()
+###########################################################################
+
+###############TIBBLE######################################
+## A tibble is a simplified dataframe for use with large or unwieldy data (for convenience). 
+Tibbles: Display in a better format (2 decimals, only 10 rows at a time). Note: You can VIEW a large dataframe more easily using tibble(big_data)
+
+##PROBLEM: Tibbles allow multiple columns with the same name or an illegal R names (not good).
+## Create a Tibble 
+## libname(dplyr)                    # First step to creating a tibble is to load dplyr
+# iris_tibb <- as_tibble(iris_data)  # OR use: iris_tibb <- tibble(iris_data)# Converts from dataframe into tibble
+tibble(vector1)                      # to directly convert a vector into a tibble
+
+Tibble Notes: A tibble does much less than a dataframe: it never changes the type of the inputs (e.g. it never converts strings to factors!), it never changes the names of variables, and it never creates row names.  It’s possible for a tibble to have column names that are not valid R variable names
+
+Another way to create a tibble is with tribble(), short for transposed tibble. tribble() is customised for data entry in code: column headings are defined by formulas (i.e. they start with ~), and entries are separated by commas. This makes it possible to lay out small amounts of data in easy to read form.
+##Tribble is a shortcut to creating data (as a Tibble) that looks tabular, like excel.
+tribble(
+  ~x, ~y, ~z,
+  "a", 2, 3.6,
+  "b", 1, 8.5
+)
+#> # A tibble: 2 x 3
+#>   x         y     z
+#>   <chr> <dbl> <dbl>
+#> 1 a         2   3.6
+#> 2 b         1   8.5
+
+tib_test <- tibble(
+  x=letters[1:2], 
+  y=2:1,
+  z=c(3.6,8.5)
+  )
+
+If tibble() and tribble() really are alternative commands, then the contents of our objects fm and fm2 should be identical:
+
+###############################################################################################
+new_lowcase <- forensic_2 %>% #### DPLYR convert all to lower case.
+  mutate_all(tolower)
+
+#Dplyr
+crime_clean2 <- crime_clean1 %>% 
+  rename_all(tolower) %>%    #Change variable name case
+
+### Convert Tibble (named iris_summary) into a dataframe.
+iris_summary <- as.data.frame(iris_summary)
+### See below for more on Tibbles:
+##### DPLYR MAIN FUNCTIONS ######################################################
+Function 	Description 				Equivalent SQL
+select() 	Selecting columns (variables) 		SELECT
+  select(id, ori, agency, year, govt_level2,5:69, -govt_level) %>% #Reorder variables
+relocate()
+  relocate(violent_rate, .before=agency)
+filter() 	Filter (subset) rows. 			WHERE
+  valid_govt <- crime_clean1 %>%  filter(!is.na(govt_level))
+slice ()        Selecting a subset of rows by row number.
+  grades %>% slice(1:2)
+group_by() 	Group the data 				GROUP BY
+Ungroup()
+summarise() 	Summarise (or aggregate) data 	-
+   grades %>% select( Exam1:Final ) %>%  summarise_all( funs(mean, sd))
+   grades  %>% summarise_if(is.numeric, funs(Xbar=mean, SD=sd) )
+arrange() 	Sort the data 	                         ORDER BY
+  grades %>% arrange(l.name)
+  grades %>% arrange(desc(Final))
+join() 		Joining data frames (tables) 			JOIN
+mutate() 	Creating New Variables 			COLUMN ALIAS
+  grades %>% mutate_at( 2:5, round, digits=2 )
+  grades %>% mutate_if( is.numeric, round, digits=2 )
+
+
+To mutate, you can add: (_if, _at, _all) very useful: superseded by the use of across() but I still prefer _if _at _all
+## See also: mutate_if(is.numeric, round, digits=2) #round all numeric to 2 decimals
+   across(.cols = everything(), .fns = NULL, ..., .names = NULL)  # Supercedes mutate_if (new)
+   if_any(.cols = everything(), .fns = NULL, ..., .names = NULL)
+   if_all(.cols = everything(), .fns = NULL, ..., .names = NULL)
+
+data %>% mutate_if(is.numeric, funs(ifelse(is.na(.), 0, .)))
+
+Examples: 
+grades %>% mutate( 
+  average = (Exam1 + Exam2 + Final)/3,
+  grade = cut(average, c(0, 60, 70, 80, 90, 100),  # cut takes numeric variable and makes a factor
+                       c( 'F','D','C','B','A')) )  # and makes a factor
+
+forensic_twogrps <- forensic_2 %>% 
+  filter(grepl("County|State", org_juris)) ######################### Filter if either variable contains county or state.
+
+##############################################################################
+## Other dplyr functions:
+count(), which is used to sum the number of unique observations that contain some particular value or categorical attribute;
+rename(), which enables a user to alter the column names for variables, often to improve ease of use and intuitive understanding of a dataset;
+slice_max(), which returns a data subset that contains the rows with the highest number of values for some particular variable;
+slice_min(), which returns a data subset that contains the rows with the lowest number of values for some particular variable. 
+(.) Period means everything in the original dataframe (before select, mutate, etc. in current code).
+#recode 'player' and 'result' columns
+df %>% mutate(player=recode(player, 'A'='Z'),
+              result=recode(result, 'Win'='1', 'Loss'='0'))
+### Recode based on values of existing variable#########
+mutate(govt_level2 = ifelse(cgovtype==1, "County", ifelse(cgovtype==2, "City", ifelse(cgovtype==3, "Township", "Not Assigned")))) %>% 
+
+#Check value IF then create new variable.
+grades %>%
+  mutate_if( is.numeric, round, digits=2 )
+
+###dplyr examples #############################################################
+#Create ID number:
+library(dplyr)
+ucr2 <- ucr1%>%
+  mutate(id=row_number())
+
+test_id <- crime_clean2 %>% 
+  group_by(ori) %>% 
+  mutate(id_new=row_number()) %>% 
+
+#Alternatives
+df %>% group_by(personid) %>% mutate(id = row_number())
+df %>% group_by(personid) %>% mutate(id = 1:n())
+df %>% group_by(personid) %>% mutate(id = seq_len(n()))
+df %>% group_by(personid) %>% mutate(id = seq_along(personid))  
+#Make ID by group
+test_id <- crime_clean2 %>% 
+  arrange(ori,year) %>% 
+  group_by(ori) %>% 
+  mutate(idcount=cur_group_id()) %>% #Create group ID across panel
+  select(ori, agency, year, id, idcount)
+#############################################################################
+iris_summary <- iris_data %>%
++ mutate(variety = as.factor(variety)) %>%
++ group_by (variety) %>%
++ summarize (mean.petal.width=mean(petal.width))
+> View(iris_summary)
+> iris_summary <- as.data.frame(iris_summary)
+> str(iris_summary)
+'data.frame':	3 obs. of  2 variables:
+ $ variety         : Factor w/ 3 levels "Setosa","Versicolor",..: 1 2 3
+ $ mean.petal.width: num  0.246 1.326 2.026
+SUBSET COMPLEX dplyr: df %>% filter(A == 1 & B == 3 | A == 3 & B ==2)
+######## Descriptives: Using summarytools libary #######################
+library(summarytools)
+descr(iris_data$sepal.length)
+##Basic descriptives ** BEST **  ##############
+descr(iris_data$sepal.length, stats="common")
+descr(iris_data, stats="common")
+The descr() function allows to display:
+    Only a selection of descriptive statistics of your choice, with the stats = c("mean", "sd") argument for mean and standard deviation for example
+    the minimum, first quartile, median, third quartile and maximum with stats = "fivenum"
+    the most common descriptive statistics (mean, standard deviation, minimum, median, maximum, number and percentage of valid observations), with stats = "common":
+
+
+##### USING DPLYR ############################################################
+## DPLYR#####################################################################
+#Create new variable column
+iris_data <- iris_data %>%
+mutate(my.feature = petal.length / petal.width)
+
+# 3 ways to create new variables using DPLYR
+iris_data <- iris_data %>%
++ mutate(z1=sepal.length/sepal.width, 
++ z2=is.na(z1),
++ short=substr(variety,1,3))
+ 
+# Create a REPEATING variable called zzz using rep function:
+iris_data <- iris_data %>%
++ mutate(zzz=rep(c('A','B','C'),50))   # repeats A B C...50 times
+
+#Drop or keep variables:
+
+df = subset(mydata, select = -c(x,z))  #drop using Base R
+df = subset(mydata, select = c(x,z))   #keep using Base R
+zz <- subset(crime_predictors_1990_2015, select= c(ORI,YEAR,Govt_level,govt_level2))
+
+ 
+
+iris_data <- iris_data %>%
++ select(petal.width, petal.length, variety)  # Same as KEEP
++ select(-petal.width, -petal.length)         # Same as DROP
++ select(starts_with("sep"))                  # Keeps all vars with prefix (not case sensitive)
++ select(ends_with(".length"))                # Keeps all vars with suffix (not case sensitive)
++ select(contains("s"))	                      # Keeps any variable that contiains an "s" in the name (not case sensitive)
++ select(petal.lenght:variety)                # Keeps all vars from to (including those named)
++ filter(variety=='Setosa')       # Filters out all rows except those with variety=Setosa
+filter(grepl('Guard', var1))
+
+##########################DPLYR SUMMARIZE (s or z in summarise: creates new dataframe)#########################
+summarise_all() affects every variable
+summarise_at() affects variables selected with a character vector or vars()
+summarise_if() affects variables selected with a predicate function
+######################################################################
+
+#####################################################################################################
+  ### Create percent change (Year over Year) using lag and mutate
+  panel <- panel %>% #Example
+    group_by(country , industry) %>%
+    mutate(per_change = (current_crime - lag(current_crime)) / lag(current_crime))
+  
+  ucr_simple2 <- ucr_simple %>% 
+    group_by(ori) %>% 
+    mutate(test_var=123.456) %>% 
+    mutate(per_change = (actual_all_crimes - lag(actual_all_crimes)) / lag(actual_all_crimes)) %>% 
+    mutate(crime_pct_change = per_change*100) %>% #Get rid of EE-02 notation
+    mutate_if(is.numeric, round, digits=2) #round all numeric to 2 decimals
+    
+  ####################################################################################################
+  
+iris_data2<-iris_data %>%
++ filter(petal.length>=0.5 & petal.width>=0.5)%>%   # Repeat of %>% means pipe into or keep going before output of dataframe.
++ select(contains("s"))
+
+## Can do multiple items with logic by repeating the %>% pipe into command.
+iris_data2<-iris_data %>%
+  filter(petal.length>=0.5 & petal.width>=0.5)%>% 
+  select(-sepal.length,-sepal.width)
+
+iris_last<-iris_data %>%
+  filter((petal.length>=0.5 & petal.width>=0.5) | (sepal.length<=5.0 & sepal.width<=5.0))
+  
+# Modify dataframe using multiple mutate commands and/or filters
+iris_data2 <- iris_data %>%
+mutate(feature1=sepal.length / sepal.width,
+       feature2=petal.length / petal.width,
+       feature3=sepal.length / petal.length,
+       feature4=sepal.width / petal.width)
+
+#Basic filter with select.
+setosa_data <- iris_data2 %>%
+  filter(variety=='Setosa') %>%
+  select(starts_with('feat'))
+#Get basic stats for whole dataframe.
+summary(setosa_data)
+feature1        feature2         feature3        feature4     
+ Min.   :1.268   Min.   : 2.667   Min.   :2.526   Min.   : 5.833  
+ 1st Qu.:1.386   1st Qu.: 4.688   1st Qu.:3.179   1st Qu.:11.667  
+ Median :1.463   Median : 7.000   Median :3.414   Median :16.000  
+ Mean   :1.470   Mean   : 6.908   Mean   :3.465   Mean   :16.287  
+ 3rd Qu.:1.541   3rd Qu.: 7.500   3rd Qu.:3.612   3rd Qu.:17.500  
+ Max.   :1.957   Max.   :15.000   Max.   :4.833   Max.   :4
+
+#Get summary of filtered or subsetted dataframe (on the fly all with one line).
+summary(iris_data2 %>% filter(variety=='Versicolor') %>% select(starts_with('feat')))
+
+#Create dataframe where conditions are met to classify flower types (predicted by size).
+feature_explore <- iris_data2 %>%
+  filter(feature3 <2.526 & feature3 >= 1.176)
+
+table(feature_explore$variety)
+     Setosa Versicolor  Virginica 
+         0         50         25 
+# Get percentages from table
+prop.table(table(feature_explore$variety))
+
+    Setosa Versicolor  Virginica 
+ 0.0000000  0.6666667  0.3333333
+
+#Aggregate to create averages by groups
+iris_grpavg <- iris_data %>%
+  group_by(variety) %>%
+  mutate (variety = as.factor(variety)) %>%
+  summarize(mean_sepal_length=mean(sepal.length),
+            mean_sepal_width=mean(sepal.width),
+            mean_petal_length=mean(petal.length),
+            mean_petal_width=mean(petal.width))
+
+#Use multiple subgroups with group_by
+iris_subgrpavg <- iris_data %>%
+  mutate (variety = as.factor(variety),
+          sub.group=rep(c("A","B"),75)) %>%
+  group_by(variety,sub.group) %>%
+  summarize(mean_sepal_length=mean(sepal.length),
+            mean_sepal_width=mean(sepal.width),
+            mean_petal_length=mean(petal.length),
+            mean_petal_width=mean(petal.width))
+
+
+#Generate new variables based on values of summarize.
+iris_subgrpavg <- iris_data %>%
+  mutate (variety = as.factor(variety))%>%
+  group_by(variety) %>%
+  summarize(max_petal_width=max(petal.length),
+            big_petal_width=ifelse(max(petal.width) >= 1.8, TRUE, FALSE))
+
+#If-then logic checks: ifelse with dplyer create new variables based on value of another variable **Real world examples
+mutate(var1 = recode(var1, "99" = "1"))  #simple recode
+mutate(var1 = recode_if(var1, id == 2702 & cancerSite == "Brain", "1" = "3"))   #Recode 1 as 3 if conditions are met
+
+crime_clean2 <- crime_clean1 %>% 
+  rename_all(tolower) %>%                #lowercase all vars
+  mutate(govt_level2 = ifelse(cgovtype==1, "County", ifelse(cgovtype==2, "City", ifelse(cgovtype==3, "Township", "Not Assigned")))) %>% 
+  select(id, ori, agency, year, govt_level2,5:69, -govt_level) %>% #Reorder variables
+  relocate(cgovtype, .before=population) %>%    #Relocate a single variable
+  rename(govt_level=govt_level2)              #Rename variable
+
+case_when() is an alternative to an ifelse(). Anytime you need multiple ifelse() statements case_when() tends to simplify the code and logic involved.                    
+############JOIN / MERGE DATAFRAMES
+#Remove/Filter one type for merge testing (below)
+iris_grpavg2 <- iris_grpavg %>%
+  filter(variety != 'Virginica')
+
+####BASE R MERGE
+data_base_inner <- merge(data_A, data_B, by = "ID")                # Inner join
+data_base_left <- merge(data_A, data_B, by = "ID", all.x = TRUE)   # Left join
+data_base_right <- merge(data_A, data_B, by = "ID", all.y = TRUE)  # Right join
+data_base_full <- merge(data_A, data_B, by = "ID", all = TRUE)     # Full join
+merge(x, y, by=c("k1","k2")) #by TWO columns
+
+
+combo_iris_data_L <- iris_data %>%
+  left_join(iris_grpavg2, by = 'variety')
+
+combo_iris_data <- iris_data %>%
+  inner_join(iris_grpavg2, by='variety')
+
+### Simple, Direct Version without other data steps.
+combo_test <- inner_join(iris_data, iris_grpavg2, by = "variety")                # Apply inner_join dplyr function
+  # The structure is shown on the line below:
+     inner_join(data1, data2, by = "ID")     # Apply inner_join dplyr function         
+
+#join by multiple columns
+full_join(data2, data3, by = c("ID", "X2"))         # Join by multiple columns
+
+full_join(data1, data2, by = "ID") %>%              # Full outer join of multiple data frames
+  full_join(., data3, by = "ID") 
+# ID   X1 X2.x X2.y   X3
+#  1   a1 <NA> <NA> <NA>
+#  2   a2   b1   c1   d1
+#  3 <NA>   b2 <NA> <NA>
+#  4 <NA> <NA>   c2   d2
+
+
+#Join dataframes with DIFFERENT KEY merge variable names:
+new_table <- left_table %>%
+  inner_join(right_table, by = c("Firstvar" = "var1",
+                                 "Secondvar" = "var2))
+#############################################################################################
+## MERGE (Left_Join) Practice ##
+combo_nodups <- inner_join(ori_nodups2, ori_nodups_MI, by = "ori")  # Single variable merge, no sort necessary.
+#Alternative full dplyr
+combo_nodups <- ori_nodups2 %>% 
+  select(ori, agency, year, total_crime_sum) %>%   #Vars with SAME name are altered x.ori, y.ori, x.year, y.year
+  inner_join(ori_nodups_MI, by = "ori")
+  
+combo_half1_half2 <- crime_clean_half1 %>% 
+  left_join(crime_clean_half2, by = c('ori', 'year')) #Join by two variables
+
+#perform left join based on multiple columns WITH RENAME of merge variables.
+df_new <- left_join(crime_clean_half1, crime_clean_half2, by=c('ori'='ori2', 'year'='year2'))
+
+###### outer join in R using outer_join() function 
+library(dplyr)
+df= df1 %>% full_join(df2,by="CustomerId")
+
+#### anti join in R
+library(dplyr)
+df= df1 %>% anti_join(df2,by="CustomerId")
+###############################################################################################
+ 
+## Sample or select random rows or cases from data:
+sample_n(mydata,100)  #sample 100 randomly
+########################################################
+The distinct function is used to eliminate duplicates.
+x1 = distinct(mydata)   #removes duplicat rows (all vars).
+my_data %>% distinct() #looks at entire row
+ori_nodups = distinct(ucr1, ori, .keep_all= TRUE)  #Like nodupkey, keeps all variables.  Based on unique ORI codes.
+ori_nodups = distinct(ucr1, ori, year, .keep_all= TRUE)  #Removes dups by ori AND year.
+
+
+########################################################################
+#Rename using Dplyr
+new_panel2 <- new_panel %>% 
+  rename(
+    new_var2 = new_var,  #Note: The "new" variable name is on the left.
+    year2 = year
+  )
+
+########### More Dplyr Practice #######################################
+iris_summary <- iris_data %>%
+  mutate(variety = as.factor(variety)) %>%
+  group_by(variety) %>%
+  summarize(mean_sepal_length = mean(sepal.length), 
+            mean_sepal_width = mean(sepal.width),
+ 	    mean_petal_length = mean(petal.length),
+ 	    mean_petal_width = mean(petal.width)) %>%
+  arrange(desc(mean_petal_width))
+
+my_iris1 <- iris_data %>%
+  left_join(iris_summary, by = "variety")
+
+#Convert char into factors;
+titanic_train <- titanic_train %>%
+  mutate(Survived = as.factor(Survived), 
+         Pclass = as.factor(Pclass), 
+         Sex = as.factor(Sex),
+ 	 Embarked = as.factor(Embarked), 
+	 Title = as.factor(Title))
+#JOIN ONLY a few variables:
+ticket_feat_all <- ticket_feat_female %>%
+  select (Ticket, MissCount, MrsCount)%>%  
+  left_join(ticket_feat_male, by = "Ticket")
+
+
+#JOIN ONLY a few variables:
+ticket_feat_zz <-
+  left_join(ticket_feat_female, 
+            ticket_feat_male %>% dplyr::select(MasterCount, MrCount, Ticket), by = "Ticket")
+
+##DOUBLE COLONS ::
+
+Packages have namespaces.  Namespaces are reserved words or functions that are used inside the package.  To use a function from inside specific package (even if the package is NOT loaded), you may use the double colon ::  Note: The package must have been previously INSTALLED (but need not be loaded).
+
+For example: df_new %>% dplyr::select(MasterCount, MrCount, Ticket), by = "Ticket") #Uses the select command from dplyr.
+
+There are also special fuctions that are reserved from inside of a package (for use to run the package).  To reference one of these special internal fuctions, you may use triple colon :::
+#####################################################################################################################################
+BASIC Descriptive STATISTICS
+#####################################################################################################################################
+#use summarytools descr function
+library(summarytools)  
+by(crop_data$yield, crop_data$fertilizer, descr)
+
+# Alt using dplyr
+library(dplyr)
+  crop_data %>%
+  group_by(fertilizer)%>%
+  descr(yield, stats = "common")
+
+library(dplyr)
+tobacco$gender %<>% forcats::fct_explicit_na()
+tobacco %>% 
+  group_by(gender) %>% 
+  descr(stats = "fivenum")
+
+crop_data %>%
+  group_by(fertilizer)
+  descr(crop_data$yield, stats = "common")
+
+iris_data %>%
+  group_by(variety) %>%
+  descr(sepal.length, stats = "common")
+
+install.packages("psych")
+libary(psych)
+describe.by(crop_data$yield, crop_data$fertilizer)
+
+################Basic STATISTICS######################################################
+library(summarytools)
+descr(crop_data, stats="common")
+#Descriptives by GROUP #Best
+  # Alt using dplyr
+  library(dplyr)
+  library(summarytools)
+  crop_data %>%
+    group_by(fertilizer)%>%
+    descr(yield, stats = "common")
+
+##Use dplyr summarize to get SIMPLE stats including SD
+summarise_at(ucr1, vars(violent_rate, property_rate),funs(mean, sd), na.rm = TRUE)
+
+###DAVE BASICS###############################################################################################
+
+offenses_known_yearly_1960_2020 <- readRDS("Z:/General DATA/CRIME_UCR_National/Kaplans UCR Data R Format/offenses_known_yearly_1960_2020.rds")
+
+View(offenses_known_yearly_1960_2020)
+
+library(dplyr)
+ucr1 <- offenses_known_yearly_1960_2020 %>%
+  select(starts_with("actual"),ori, agency_name, year) #Keeps vars that begin with "actual" (drops unnecessary variables)
+
+##############################################################################################################
+Reorder Column Names
+ucr1 <- ucr1[,c(44,45,46,1:43)] # BASE R
+
+ucr1 <- offenses_known_yearly_1960_2020 %>%
+  select(ori, agency_name, year, 4:55 -not_needed) #Keeps needed vars (drops unnecessary variables)
+
+crime_new <- crime_clean2 %>%  
+  relocate(cgovtype, .before=population)  #RELOCATE a variable .before, .after
+
+crime_new <- relocate(crime_clean2,cgovtype, .before=population)
+
+ucr_1995 <- ucr1 %>%
+  filter(year==1995) #simple filter 
+
+cor_vect<-ucr_1995%>%
+  select(contains("murder")|contains("robbery_total") |contains("assault_total"))
+
+cor(cor_vect)
+#####################################################################################################################
+  #Generate means for all variables group by agency_type  
+  means_table_all <- ucr_1995 %>%
+    select(agency_type, is.numeric) %>%
+    group_by(agency_type) %>%
+    summarize_all(list(mean=mean)) %>%
+    rename(year_test=year_mean)  #rename the variable in the new dataframe.
+
+  #Generate means for all variables group by agency_type  
+  sd_table_all <- ucr_1995 %>%
+    select(agency_type, is.numeric) %>%
+    group_by(agency_type) %>%
+    summarize_all(list(sd=sd)) %>%
+    rename(year_test=year_sd)  
+
+
+  new_table <- ucr_1995 %>%
+    rename(year_test=year_mean)  #rename the variable in the new dataframe.
+
+###########################################################################
+# Creates a counter using dplyr
+
+ucr_counter <- ucr_simple %>% 
+    arrange(ori, year) %>% 
+    group_by(ori) %>% 
+    mutate(crime_count = cumsum(actual_all_crimes))
+
+############Get FIRST or LAST whole record (like first. or last. in SAS) with BY group  ####################
+crime_first_last <- crime_clean_half1 %>% 
+  group_by(ori) %>%
+  filter(row_number()==1 | row_number()==n())
+
+#############################################################################################################
+## Finds FIRST and LAST record (e.g. ORI, year)
+ucr_first_last <- ucr1 %>% 
+  group_by(ori) %>%
+  summarise(firstocc = first(year), lastocc = last(year))
+
+ucr_first_last <- ucr1 %>% 
+    arrange(ori, year) %>% 
+    filter(actual_all_crimes>0) %>% 
+    group_by(ori) %>%
+    summarise(firstocc = first(year), lastocc = last(year))
+
+##################################################################################################################
+
+###Concatenate or unite two variable columns##################################################
+unite(dataframe, "newvar", col2, col3, sep = "_", remove = TRUE, na.rm = FALSE) # BASE R version
+
+##Example using Dplyr:
+  forens_short <- forensic_2 %>% 
+    select(lab_id, agencyname, state, labname, labzsub) %>% 
+    unite("znewvar", labzsub, state, sep="_", remove = FALSE, na.rm = FALSE)
+
+############################################################################################################################
+Difference between REQUIRE() and LIBRARY()
+require is used inside of functions, as it outputs a warning and continues if the package is not found, whereas library will throw an error.  Library is preferred
+require means "try to load..." but if it doesn't work, the code will just continue with no warning (not good).
+#############################################################################################################################

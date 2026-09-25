@@ -1,0 +1,265 @@
+There are 3 "versions" of R [], $, dplyr% %
+R uses () Parenthesis to break up commands and phrases (instead of ; in SAS).
+
+# Find and set the current working directory
+getwd () #shows where files will be saved (current working directory)
+setwd ("C:/Users/David/Documents/R Teaching UT")
+
+# Comment is pound sign "#"  Multi-line comment is shift-ctrl-c
+
+### Import csv data
+iris_data <- read.csv("C:/Users/David/Documents/R Teaching UT/iris.csv")
+
+iris_data <- read.csv("C:/Users/David/Documents/R Teaching UT/iris.csv", stringsAsFactors=FALSE)  #Avoid character conversion.
+
+### Write (Export) a permanent file into csv format
+write.csv(iris_data, "C:/Users/David/Documents/R Teaching UT/iris_new.csv")
+
+###Load pre-loaded data
+data(mtcars)  #loads an R from pre-stored existing R practice datasets
+rm(mtcars)  #removes or deletes the FILE (mtcars from the environment. Still exists in R preloaded datasets.)
+
+###Load R data 
+###.Rda and .Rdata are the same (.rda is just shorter to write)### NOTE: .rds is another (better?) format.
+###.Rda and .Rdata files can store functions and vectors ALONG WITH the main dataset.  .Rda is more efficient than .csv.
+#save to rda file
+save(crime_clean2, file = "crime_predictors_clean2.rda")
+load("crime_predictors_clean2.rda") ##IMPORTANT: It will import in its ORIGINAL FORM and/or NAME
+
+###############################################################################################
+#Import and Export SPSS, SAS and STATA files
+library(haven) 
+Haven enables R to read and write various data formats used by other statistical packages by wrapping the fantastic ReadStat C library written by Evan Miller. Haven is part of the tidyverse. Currently it supports:
+
+# SAS
+read_sas("mtcars.sas7bdat")
+write_sas(mtcars, "mtcars.sas7bdat")
+
+# SPSS
+read_sav("mtcars.sav")
+write_sav(mtcars, "mtcars.sav")
+
+# Stata
+read_dta("mtcars.dta")
+write_dta(mtcars, "mtcars.dta")
+#####################################$##########################################################
+
+install.packages("xlsx")
+library("xlsx")
+The R functions read.xlsx() and read.xlsx2() can be used to read the contents of an Excel worksheet into an R data.frame.
+
+install.packages("readxl")
+library(readxl)
+dates <- read_xlsx("C:/Users/David/Desktop/Quick Date Example R Studio.xlsx")
+
+
+
+
+#Open VIEWER
+View(iris_data)  #Opens the data viewer to see the data *note the capital "V"
+
+### Create a new varible
+iris_data$newvar1 <- (iris_data$Sepal.Length + 10)
+
+### Drop and keep
+iris_data2 = subset(iris_data, select = -c(Sepal.Length,Sepal.Width))  #drop using Base R
+iris_data2 = subset(mydata, select = c(x,z))                           #keep using Base R
+
+##Rename a single variable
+names(new_panel)[1] <- "state"  #Renames variables using base R vector format
+
+
+###Create and work with vectors (similar to variable or array)
+char_vector <- c("The", "quick", "brown", "fox", "jumped") #creates listed variable values
+char_vector #lists or shows vector in console
+
+integ_vect <- c(1L,2L,3L,4L,5L) ### Create an INTEGER vector
+
+####Manipulating vectors
+new_vector <- paste(char_vector, collapse=" ")   #concatenates using paste with space separator
+drop_item1 <- new_vector[-1] #Deletes first item from vector
+
+# Convert char vector into FACTOR
+factor_vector <- factor(c("A", "B", "B", "A", "C"))
+table(factor_vector)    #table gives a frequency count
+is.factor(factor_vector)
+
+logical_vector1 <- c(TRUE, FALSE, TRUE, TRUE, FALSE)
+table(logical_vector1)
+sum(logical_vector1)
+sum(factor_vector)
+
+### Check length type of vector
+length(char_vector)
+typeof(char_vector) #See also str(char_vector)
+
+
+# Filtering in base R is often two step process.  if returns logical vector.
+cyl_check <- mtcars$cyl > 6  ## This creates logical values TRUE, FALSE
+new_mtcars <- mtcars[cyl_check,]
+
+# Filter CAN also be done directly with colunm names
+new_mtcars3 <- mtcars[mtcars$cyl>6,]  #if cyl value on row is greater than 6 then keep all variables
+
+## Subset or slice the data by row or column can also use brackets
+newdata <- newdata[1,] #Keep first row with all variables
+newdata <- newdata[,1] #Keep first column with all rows
+dropvar1 <- newdata[,-1] #First row with all variables
+droprow1 <- newdata[-1,] #First row with all variables
+
+###List or show top or bottom records
+head(mtcars, n=20)
+tail(mtcars, n=20)
+head(mtcars, n=1) ##Can also be used to get first or last record
+
+###Create ID from rownames if rownames are NUMERIC
+iris_data$id <- 0
+iris_data$id <- as.integer(rownames(iris_data))
+iris_data$id2 <- as.numeric(rownames(iris_data))-1 #if you want the first ID=0.
+
+#Create ID from rownames if rownames are CHAR
+mtcars$id <- 0  #initialize id=0
+mtcars$iderr <- as.numeric(rownames(mtcars)) #Won't work because rownames are character
+mtcars$id <- as.numeric(as.factor(rownames(mtcars)))
+
+### SORT the data 
+mtcars2 <- mtcars[order(mtcars$qsec),]  #sort by quarter second (qsec) time in seconds.
+mtcars2 <- mtcars[order(mtcars$id),]  #sort by id
+
+#Drop or delete a single variable
+mtcars$name <- NULL  #deletes the variable "name"
+mtcars$vs <- NULL  #deletes the variable "vs"
+
+# Convert a single variable to uppercase or lowercase (Base R)
+zz <- toupper(iris_data$variety)
+iris_data$variety <- toupper(iris_data$variety)
+iris_data$variety <- tolower(iris_data$variety)
+
+#Convert ALL column variable names to uppper or lower case using Base R
+names(crime_new) <- tolower(names(crime_orig))
+
+Reorder variable or column names
+data[ , c("var2", "var1", "var3")]              # Reorder columns by names
+data[ , c(2, 1, 3)]                       # Reorder columns by index
+
+### Recode large vs. small engine cars by cylinder (cyl) number.  
+mtcars$cyl_large <- ifelse(mtcars$cyl>6,1,0)  #recodes variables this works (see above also)
+
+# Direct recoding using [] brackets: Recode speed into new char variable with three levels "slow, medium, fast" by 
+mtcars$speed <- NA
+mtcars$speed[mtcars$qsec>20] <- "slow"  ###if qsec gt 20 then speed="slow"
+mtcars$speed[mtcars$qsec>18 & mtcars$qsec<=20] <- "medium"
+mtcars$speed[mtcars$qsec<=18] <- "fast"
+
+#ifelse will CHANGE all values, even if two conditions are not met. Use direct replacement (below)
+mtcars$speed2 <- ifelse(mtcars$qsec>20,"slow","medium")
+mtcars$speed2 <- ifelse(mtcars$qsec<=18 & mtcars$speed2=="medium", "fast", "medium") ###WRONG, changes all else values to "medium"
+mtcars$speed2 <- ifelse(mtcars$qsec<=18, "fast", mtcars$speed2) #KEEPS the original value if condition not met.
+
+#Direct recode can be used with ifelse to avoid third condition (see above)
+mtcars$speed2[mtcars$qsec<=18] <- "fast"  #Can do a direct replacement to avoid ifelse.
+
+# ifelse where the ELSE keeps the original value
+mtcars$speed2 <- ifelse(mtcars$qsec<=18, "fast", mtcars$speed2) #KEEPS the original value if condition not met.
+
+### cbind and rbind with vectors
+df1 <- data.frame(v1=c("A1", "A2", "A3", "A4"),
+        v2=c("B1", "B2", "B3", "B4"))
+
+vect1 <- c(1,2,3,4)  #create numeric vector with 4 values
+df_combo <- cbind(df1, vect1)  #smashes columns together (must be equal length)
+
+####BASE R MERGE
+data_base_inner <- merge(data_A, data_B, by = "ID")                # Inner join
+merge(file1, file2, by=c("v1","v2")) #by TWO columns
+
+data_base_left <- merge(data_A, data_B, by = "ID", all.x = TRUE)   # Left join
+data_base_right <- merge(data_A, data_B, by = "ID", all.y = TRUE)  # Right join
+data_base_full <- merge(data_A, data_B, by = "ID", all = TRUE)     # Full join
+merge(file1, file2, by=c("v1","v2")) #by TWO columns
+
+### Dates and times
+date_notime_vect<-as.Date(c('2020-02-02 13:13:01','2021-04-02 08:10:04'))
+> typeof(date_time_vect)
+[1] "double"
+# POSIXct is needed to store BOTH date and time
+> date_time_vect<-as.POSIXct(c('2020-02-02 13:13:01','2021-04-02 08:10:04'))
+
+#### Aggregate the data by SUM or Averaging ################
+prisons_state_2010 <- aggregate(dummy ~ state + year, prisons_new, sum)
+new_df <- aggregate(petal.width ~ variety, iris_data, sum) 
+new_df <- aggregate(var_main ~ var_agg, old_df, sum) # Aggregate a single variable. Tilde ~ is the same as "by"
+aggregate(cbind(sepal.length, sepal.width, petal.length, petal.width) ~ variety, iris_data, sum) #Aggregate multiple variables at once.
+
+############################################################
+Get NUMBER OF COLUMNS (Variables)
+ncol(df)
+Get NUMBER OF ROWS
+nrow(df)
+############################################################
+
+###Loops
+
+#Simple count of cars with mpg >21 in the mtcars dataframe.
+############################################################################
+# for loop
+mtcars2 <- mtcars
+car_count <- 0
+for (i in 1:nrow(mtcars2)) {
+  car_count <- car_count+1
+  if(i==nrow(mtcars2)) {
+    print (paste("Final row count= ", car_count))
+    Sys.sleep(3) # Sleeps 3 seconds (see also: "break" and "next")
+    print ("Done sleeping") 
+  }
+}
+mean(mtcars2$mpg)
+
+###########################################################################
+
+# for loop
+mtcars2 <- mtcars
+car_count <- 0
+#rows <- nrow(mtcars2)
+for (i in 1:rows) {
+  car_count <- car_count+1
+  if(i==rows) {
+    print (paste("Final row count= ", car_count))
+    Sys.sleep(3) # Sleeps 3 seconds (see also: "break" and "next")
+    print ("Done sleeping") 
+  }
+}
+###########################################################################
+# While loop
+mtcars2 <- mtcars
+car_count <- 0
+rows <- nrow(mtcars2)
+i <- 0
+while (i <= rows ){
+  i <- i+1
+  car_count <- car_count+1
+  if(i==rows) {
+    print (paste("Final row count= ", car_count))
+    Sys.sleep(1) # Sleeps 3 seconds (see also: "break" and "next")
+    print ("Done sleeping") 
+  }
+}
+#############While with nested if ###
+car_count <- 0
+i <- 1
+while (i < nrow(mtcars3)){
+  if (mtcars3$mpg[i]<21) {
+  car_count = car_count+1
+  }
+i=i+1
+}
+print(paste("Number of gas guzzling cars is: ",car_count)) #"Number of gas guzzling cars is:  18"
+
+
+#Use a while loop to count the number of cars with gas mileage (mpg) less than 21 mpg.
+i <- 0
+gasGuzzler <- 0
+while (i < nrow(mtcars3)) {
+  i = i + 1
+  if(mtcars3[i,'mpg'] < 21) {gasGuzzler <- gasGuzzler + 1}
+}

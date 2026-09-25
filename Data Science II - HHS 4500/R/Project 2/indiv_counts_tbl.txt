@@ -1,0 +1,14 @@
+# A tibble: 11 × 4
+   Step                                   Actual Expected Difference
+   <chr>                                   <int>    <dbl>      <dbl>
+ 1 1) Original long-panel rows           1412628  1412628          0
+ 2 2) First merge total rows             1412628  1412628          0
+ 3 2) Distinct schools after first merge  117719       NA         NA
+ 4 3) Non-matching rows                   293352       NA         NA
+ 5 3) Distinct non-matching schools        24446    24446          0
+ 6 4) Second merge total rows              77160    77160          0
+ 7 4) Distinct schools in second merge      6430     6430          0
+ 8 5) First-match total rows             1119276       NA         NA
+ 9 5) Distinct schools in first match      93273    93271          2
+10 6) Final combined total rows          1196436  1196412         24
+11 6) Distinct schools final               99703    99701          2

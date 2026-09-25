@@ -1,0 +1,33 @@
+In-Class Base R Exercise 2 (SAS_Cars)
+
+1) Open SAS and save the preloaded "Cars" data file to your computer (e.g. downloads, desktop).  Leave the file in SAS format (.SAS7BDAT).
+
+2) Open R and install the "haven" package, then use the library command to load the package into the R software.
+
+3) Import the SAS "Cars" file using the "haven" package.
+
+4) Make a copy of cars, named "cars2"
+
+5) Sort cars2 by make and model.
+
+6) Create a numeric ID variable (using any method).
+
+7) Convert all variable names to lower case.
+
+8) Create a dataframe called cars_half1 that keeps only the variables: id, make, mpg_city, mpg_highway
+
+9) Create a dataframe called cars_half2 that keeps only the variables: id, model, type, msrp, weight
+
+10) Merge cars_half1 and cars_half2 by id (name the merged file "cars_merged")
+
+11)  Using cars_merged, create a new variable called "mpg_avg" that averages mpg_city and mpg_highway.
+
+12) Use the "table" function to obtain a frequency count of cars by "type" (write the counts by type using comments).
+
+13) Remove all cars that are type "Hybrid" by using a filter variable and bracket notation (two step process).
+
+13) Aggregate all vehicles by type to identify the mean of mpg_avg for each type.
+
+14 Write a comment that lists the mean values for each type of car.
+
+15) Submit your code via Blackboard.
