@@ -1,0 +1,59 @@
+MATH 3620 Final Project – Multiple Linear Regression - Aiden Rader
+
+
+Dataset Name:
+Used Cars - Uncovering Factors That Affect Used Car Prices
+
+
+Dataset Source(s):
+Main Source - https://data.world/data-society/used-cars-data
+
+
+Dataset Authors:
+@Data-Society - (Original Owners)
+
+
+Description:
+This dataset contains information on used car listings (scraped with a bot) in 
+Germany over many years, including variables such as price, year of registration,
+mileage (kilometers driven), and engine power. The data represents real-world 
+vehicle listings and allows for analysis of factors that influence car prices.
+
+
+Side Note:
+Since this dataset has German origin, the author has made sure that all variables are
+in english BUT the actual data may not be. This is fine since after a data clean we are
+left with majority numerical and universal variables so no translationis needed. If there
+is a translation it would be for the categorical variables.
+
+Examples:
+
+Response variable (Y):
+- price
+
+
+Main Explanatory Variables (X):
+- yearOfRegistration (Quantitive)
+- powerPS (Quantitive)
+- kilometer (Quantitive)
+
+
+Optional Explanatory Variables (X):
+- seller (Categorical)
+- vehicleType (Categorical)
+- gearbox (Categorical)
+- fuelType (Categorical)
+- brand (?) <- might remove since there are too many!
+- notRepairDamage (Categorical)
+
+
+Purpose of the Study:
+The main purpose is to figure out exactly what factors affect used car prices. Basically if
+we know variables like car's year, mileage, power, etc, how well can we predict its price?
+With this model we can hopefully get a brief explanation of car prices (generally worldwide)
+using data.
+
+
+Reason for Selection:
+I picked this topic since over the years I have had the "pleasure"" of looking at used car values
+skyrocket from what they once were...
